@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <exception>
 
+#include <SFPlot/CartesianChart.hpp>
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
@@ -8,13 +10,21 @@ int main()
 {
     sf::ContextSettings settings;
 
-    sf::RenderWindow window(sf::VideoMode(800, 600), "SFPlot-Sample", sf::Style::Default, settings);
+    sf::RenderWindow window(sf::VideoMode(1600, 1200), "SFPlot-Sample", sf::Style::Default, settings);
 
     sf::Font font;
-    if(!font.loadFromFile("resource/ipaexm.ttf"))
+    if (!font.loadFromFile("resource/ipaexm.ttf"))
     {
         throw std::runtime_error("Failed to load resource/ipaexm.ttf");
     }
+
+    CartesianChart chart("Chart1");
+    CartesianData data;
+    data.type = CartesianData::PLOT_TYPE::POINT;
+    data.color = sf::Color::Green;
+    data.name = "Data1";
+    data.data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0},};
+    chart.set_data(data);
 
     while (window.isOpen())
     {
@@ -28,6 +38,7 @@ int main()
         }
 
         window.clear(sf::Color(30, 30, 30));
+        window.draw(chart);
         window.display();
     }
 
