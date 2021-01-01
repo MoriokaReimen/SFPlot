@@ -6,6 +6,7 @@ cmake_install.cmake
 
 # Ignore build output
 *.a
+plot
 
 # ignore vscode files
 build/*
