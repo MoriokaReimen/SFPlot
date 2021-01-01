@@ -1,5 +1,14 @@
 #include "SFPlot/PieData.hpp"
 
+PieData::PieElement::PieElement()
+    : value(0.0), color(sf::Color::Green)
+{
+}
+
+PieData::PieElement::~PieElement()
+{
+}
+
 PieData::PieData()
     : data()
 {
@@ -16,7 +25,7 @@ float PieData::get_total() const
 
     for(const auto& elem : data)
     {
-        total += elem.second;
+        total += elem.second.value;
     }
 
     return total;
