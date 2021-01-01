@@ -20,7 +20,7 @@ int main()
 
     CartesianChart chart("Chart1");
     CartesianData data;
-    data.type = CartesianData::PLOT_TYPE::POINT;
+    data.type = CartesianData::PLOT_TYPE::LINE;
     data.color = sf::Color::Green;
     data.name = "Data1";
     data.data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0},};

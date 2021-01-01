@@ -44,12 +44,12 @@ void CartesianChart::draw_point(sf::RenderTarget& target, sf::RenderStates state
     for (auto it = data_.data.cbegin(); it != data_.data.cend(); it++)
     {
             constexpr float POINT_RADIUS = 5.f;
-            const auto x = (it->x - min_x) / (max_x - min_x) * 800.f;
-            const auto y = 600.f - (it->y - min_y) / (max_y - min_y) * 600.f;
+            const auto x = (it->x - min_x) / (max_x - min_x) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
+            const auto y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (it->y - min_y) / (max_y - min_y) * (axes_.DIMENSION.y - axes_.MARGIN.y);
 
             sf::CircleShape point(POINT_RADIUS);
             point.setFillColor(data_.color);
-            point.setPosition(x - POINT_RADIUS / 2.f, y- POINT_RADIUS / 2.f);
+            point.setPosition(x - POINT_RADIUS, y- POINT_RADIUS);
 
             target.draw(point, states);
     }
@@ -81,14 +81,11 @@ void CartesianChart::draw_line(sf::RenderTarget& target, sf::RenderStates states
             auto line_start = *it;
             auto line_end = *std::next(it);
 
-            line_start.x = (line_start.x - min_x) / (max_x - min_x) * 800.f;
-            line_start.y = 600.f - (line_start.y - min_y) / (max_y - min_y) * 600.f;
+            line_start.x = (line_start.x - min_x) / (max_x - min_x) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
+            line_start.y = (axes_.DIMENSION.y -axes_.MARGIN.y) - (line_start.y - min_y) / (max_y - min_y) * (axes_.DIMENSION.y - axes_.MARGIN.y);
 
-            line_end.x = (line_end.x - min_x) / (max_x - min_x) * 800.f;
-            line_end.y = 600.f - (line_end.y - min_y) / (max_y - min_y) * 600.f;
-
-            // line_start = {0.f, 0.f};
-            // line_end = {100.f, 100.f};
+            line_end.x = (line_end.x - min_x) / (max_x - min_x) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
+            line_end.y = (axes_.DIMENSION.y - axes_.MARGIN.y)- (line_end.y - min_y) / (max_y - min_y) * (axes_.DIMENSION.y -axes_.MARGIN.y);
 
             sf::Vertex line[] =
             {
