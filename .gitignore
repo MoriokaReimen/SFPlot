@@ -5,7 +5,6 @@ Makefile
 cmake_install.cmake
 
 # Ignore build output
-SFPlot
 *.a
 
 # ignore vscode files
