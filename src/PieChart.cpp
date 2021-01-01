@@ -9,12 +9,14 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
     const float total = data_.get_total();
     size_t start = 0U;
 
+    /*
     for(const auto& [key, val] : data_)
     {
         auto points = static_cast<size_t>(val.value / total) * POINTS;
         start += points
         // target.draw(, states);
     }
+    */
 }
 
 PieChart::PieChart()

@@ -6,6 +6,8 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+#include "SFPlot/FanShape.hpp"
+
 int main()
 {
     sf::ContextSettings settings;
