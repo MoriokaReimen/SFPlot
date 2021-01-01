@@ -40,7 +40,9 @@ int main()
         }
 
         window.clear(sf::Color(30, 30, 30));
+        FanShape fan(100.f);
         window.draw(chart);
+        window.draw(fan);
         window.display();
     }
 

@@ -1,16 +1,15 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class FanShape : public sf::Drawable, public sf::Transformable
+class FanShape : public sf::Shape
 {
     float radius_;
     float start_angle_;
     float end_angle_;
-    sf::Color color_;
-    virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+
 public:
     FanShape(const float& radius = 50.f, const float& start_angle = 0.f, const float& end_angle = 360.f);
-    virtual ~FanShape();
+    virtual ~FanShape() override;
 
     /* setter function */
     void set_radius(const float& radius);
@@ -22,5 +21,6 @@ public:
     float get_radius() const;
     float get_start_angle() const;
     float get_end_angle() const;
-    sf::Color getColor() const;
+    virtual std::size_t getPointCount() const override;
+    virtual sf::Vector2f getPoint(std::size_t index) const override;
 };

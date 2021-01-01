@@ -1,31 +1,15 @@
 #include "SFPlot/FanShape.hpp"
 #include <cmath>
 
-void FanShape::draw(sf::RenderTarget& target, sf::RenderStates states) const
-{
-    states.transform *= getTransform();
-
-    std::vector<sf::Vertex> vertices;
-    vertices.push_back(sf::Vertex(sf::Vector2f(radius_, radius_), color_));
-
-    for(float angle = start_angle_; angle < end_angle_; angle += 0.01)
-    {
-        sf::Vector2f point(radius_ + radius_ * std::sin(angle / 180.f * M_PI), radius_ - radius_ *  std::cos(angle / 180.f * M_PI));
-        sf::Vertex vertex(point, color_);
-        vertices.push_back(vertex);
-    }
-
-    target.draw(&vertices[0], vertices.size(), sf::TriangleFan, states);
-
-}
-
 FanShape::FanShape(const float& radius, const float& start_angle, const float& end_angle)
-    : radius_(radius), start_angle_(start_angle), end_angle_(end_angle), color_()
+    : radius_(radius), start_angle_(start_angle), end_angle_(end_angle)
 {
     if(end_angle_ < start_angle_)
     {
         std::swap(end_angle_, start_angle_);
     }
+
+    update();
 }
 
 FanShape::~FanShape()
@@ -36,21 +20,27 @@ FanShape::~FanShape()
 void FanShape::set_radius(const float& radius)
 {
     radius_ = radius;
+    update();
 }
 
 void FanShape::set_start_angle(const float& start_angle)
 {
     start_angle_ = start_angle;
+    if(end_angle_ < start_angle_)
+    {
+        std::swap(end_angle_, start_angle_);
+    }
+    update();
 }
 
 void FanShape::set_end_angle(const float& end_angle)
 {
     end_angle_ = end_angle;
-}
-
-void FanShape::setColor(const sf::Color& color)
-{
-    color_ = color;
+    if(end_angle_ < start_angle_)
+    {
+        std::swap(end_angle_, start_angle_);
+    }
+    update();
 }
 
 /* getter function */
@@ -69,7 +59,19 @@ float FanShape::get_end_angle() const
     return end_angle_;
 }
 
-sf::Color FanShape::getColor() const
+std::size_t FanShape::getPointCount() const
 {
-    return color_;
+    return 102;
+}
+
+sf::Vector2f FanShape::getPoint(std::size_t index) const
+{
+    if(index == 0) return sf::Vector2f(radius_, radius_);
+
+    index -= 1;
+    const float angle = (end_angle_ - start_angle_) * 0.01;
+    sf::Vector2f point(radius_ + radius_ * std::sin(angle * index / 180.f * M_PI),
+                       radius_ - radius_ *  std::cos(angle * index / 180.f * M_PI));
+
+    return point;
 }
