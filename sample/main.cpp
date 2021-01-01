@@ -21,7 +21,10 @@ int main()
     CartesianChart chart("Chart1");
     CartesianData data;
     data.data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
+    data.type = CartesianData::PLOT_TYPE::POINT;
     chart.set_data(data);
+    chart.set_font(font);
+    chart.setPosition(50, 50);
 
     while (window.isOpen())
     {

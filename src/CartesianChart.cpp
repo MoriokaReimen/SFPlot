@@ -4,10 +4,10 @@
 void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
-    target.draw(axes_, states);
-    auto x_range = data_.get_x_range();
-    auto y_range = data_.get_y_range();
+    const auto x_range = data_.get_x_range();
+    const auto y_range = data_.get_y_range();
 
+    target.draw(axes_, states);
     switch (data_.type)
     {
     case CartesianData::PLOT_TYPE::POINT:
@@ -81,11 +81,14 @@ CartesianChart::~CartesianChart()
 void CartesianChart::set_data(const CartesianData& data)
 {
     data_ = data;
+    axes_.set_x_range(data_.get_x_range());
+    axes_.set_y_range(data_.get_y_range());
 }
 
 void CartesianChart::set_font(const sf::Font& font)
 {
     font_ = font;
+    axes_.set_font(font_);
 }
 
 void CartesianChart::set_axes(const CartesianAxes& axes)
