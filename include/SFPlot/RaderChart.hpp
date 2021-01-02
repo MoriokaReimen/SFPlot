@@ -7,7 +7,7 @@ class RaderChart : public sf::Drawable, public sf::Transformable
     sf::Font font_;
 
     RaderData data_;
-    RaderAxes axes_;
+    mutable RaderAxes axes_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void draw_point(sf::RenderTarget& target, sf::RenderStates states, const float& max_value) const;

@@ -1,6 +1,7 @@
 #include "SFPlot/RaderAxes.hpp"
 #include <vector>
 #include <cmath>
+#include <sstream>
 
 const float RaderAxes::RADIUS(250.f);
 
@@ -8,11 +9,13 @@ void RaderAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
     draw_axes(target, states);
+    if(!font_.getInfo().family.empty()) {
+        draw_legend(target, states);
+    }
 }
 
 void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    const float RADIUS(250.f);
     /* Draw outer circle*/
     {
         std::vector<sf::Vertex> vertices;
@@ -26,7 +29,7 @@ void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) con
     }
 
     /* Draw inner circle*/
-    for (size_t i = 1; i < 5; i++) {
+    for (std::size_t i = 1; i < 5; i++) {
         float radius = RADIUS / 5.f * i;
         std::vector<sf::Vertex> vertices;
         for (std::size_t index = 0; index < 31; index++) {
@@ -53,6 +56,32 @@ void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) con
 
             target.draw(vertices, 2, sf::Lines, states);
         }
+    }
+}
+
+void RaderAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates states) const
+{
+    /* Draw angle legend */
+    constexpr float angle_step = 45.f;
+    constexpr float MARGIN = 20.f;
+
+    for(int i = 0; i < 8; i++)
+    {
+        float angle = angle_step * i;
+        std::stringstream ss;
+        // ss.precision(2);
+        ss << angle;
+        sf::Text legend;
+        legend.setString(ss.str());
+        legend.setFont(font_);
+        legend.setFillColor(sf::Color::White);
+        legend.setCharacterSize(15);
+        legend.setOrigin(legend.getGlobalBounds().width / 2.0, legend.getGlobalBounds().height / 2.0);
+        legend.setRotation(angle);
+        sf::Vector2f position(RADIUS + (RADIUS + MARGIN) * std::sin(angle / 180.f * M_PI),
+                              RADIUS - (RADIUS + MARGIN) * std::cos(angle / 180.f * M_PI));
+        legend.setPosition(position);
+        target.draw(legend, states);
     }
 }
 

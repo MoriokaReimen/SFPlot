@@ -8,6 +8,7 @@ class RaderAxes : public sf::Transformable, public sf::Drawable
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void draw_axes(sf::RenderTarget& target, sf::RenderStates states) const;
+    void draw_legend(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
     static const float RADIUS;
 

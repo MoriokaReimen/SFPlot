@@ -50,7 +50,8 @@ int main()
     rader_data.data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}};
     rader_data.color = sf::Color::Cyan;
     rader_chart.set_data(rader_data);
-    rader_chart.move(1000.f, 500.f);
+    rader_chart.move(1000.f, 400.f);
+    rader_chart.set_font(font);
 
     while (window.isOpen())
     {
