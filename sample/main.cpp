@@ -6,9 +6,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
-#include "SFPlot/PieChart.hpp"
-#include "SFPlot/FanShape.hpp"
-#include "SFPlot/RaderChart.hpp"
+#include <SFPlot/SFPlot.hpp>
 
 int main()
 {
