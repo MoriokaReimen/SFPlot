@@ -64,12 +64,10 @@ void RaderAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates states) c
     /* Draw angle legend */
     constexpr float angle_step = 45.f;
     constexpr float MARGIN = 20.f;
-
     for(int i = 0; i < 8; i++)
     {
         float angle = angle_step * i;
         std::stringstream ss;
-        // ss.precision(2);
         ss << angle;
         sf::Text legend;
         legend.setString(ss.str());
@@ -80,6 +78,26 @@ void RaderAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates states) c
         legend.setRotation(angle);
         sf::Vector2f position(RADIUS + (RADIUS + MARGIN) * std::sin(angle / 180.f * M_PI),
                               RADIUS - (RADIUS + MARGIN) * std::cos(angle / 180.f * M_PI));
+        legend.setPosition(position);
+        target.draw(legend, states);
+    }
+
+    /* Draw value legend */
+    constexpr float X_MARGIN(20.f);
+    constexpr float Y_MARGIN(10.f);
+    float value_step = max_value_ / 5;
+    for(int i = 0; i < 6; i++)
+    {
+        float value = value_step * i;
+        std::stringstream ss;
+        ss << value;
+        sf::Text legend;
+        legend.setString(ss.str());
+        legend.setFont(font_);
+        legend.setFillColor(sf::Color::White);
+        legend.setCharacterSize(15);
+        legend.setOrigin(legend.getGlobalBounds().width / 2.0, legend.getGlobalBounds().height / 2.0);
+        sf::Vector2f position(RADIUS - X_MARGIN, RADIUS - RADIUS / 5 * i - Y_MARGIN);
         legend.setPosition(position);
         target.draw(legend, states);
     }
