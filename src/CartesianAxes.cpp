@@ -158,8 +158,8 @@ void CartesianAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates state
 }
 
 CartesianAxes::CartesianAxes()
-    : x_min_(0.f), x_max_(100.f), x_origin_type_(CartesianAxes::ORIGIN_TYPE::ORIGIN_ZERO),
-      y_min_(0.f), y_max_(0.f), y_origin_type_(CartesianAxes::ORIGIN_TYPE::ORIGIN_ZERO),
+    : x_range_(), x_origin_type_(CartesianAxes::ORIGIN_TYPE::ORIGIN_ZERO),
+      y_range_(), y_origin_type_(CartesianAxes::ORIGIN_TYPE::ORIGIN_ZERO),
       font_()
 {
 
@@ -197,12 +197,12 @@ void CartesianAxes::set_font(const sf::Font& font)
 /* getter functions **************************************************/
 std::pair<float, float> CartesianAxes::get_x_range() const
 {
-    return std::pair<float, float>(x_min_, x_max_);
+    return x_range_;
 }
 
 std::pair<float, float> CartesianAxes::get_y_range() const
 {
-    return std::pair<float, float>(y_min_, y_max_);
+    return y_range_;
 }
 
 CartesianAxes::ORIGIN_TYPE CartesianAxes::get_x_origin_type() const

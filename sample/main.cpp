@@ -8,6 +8,7 @@
 
 #include "SFPlot/PieChart.hpp"
 #include "SFPlot/FanShape.hpp"
+#include "SFPlot/RaderAxes.hpp"
 
 int main()
 {
@@ -44,6 +45,10 @@ int main()
     PieChart pie;
     pie.set_data(pie_data);
     pie.move(1000.f, 0.f);
+    pie.setScale(0.5f, 0.5f);
+
+    RaderAxes rader_axes;
+    rader_axes.move(1000.f, 500.f);
 
     while (window.isOpen())
     {
@@ -59,6 +64,7 @@ int main()
         window.clear(sf::Color(30, 30, 30));
         window.draw(chart);
         window.draw(pie);
+        window.draw(rader_axes);
         window.display();
     }
 

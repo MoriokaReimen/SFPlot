@@ -10,13 +10,9 @@ class CartesianAxes : public sf::Transformable, public sf::Drawable
         ORIGIN_MIDDLE
     };
 
-    float x_min_;
-    float x_max_;
     std::pair<float, float> x_range_;
     ORIGIN_TYPE x_origin_type_;
 
-    float y_min_;
-    float y_max_;
     std::pair<float, float> y_range_;
     ORIGIN_TYPE y_origin_type_;
 
