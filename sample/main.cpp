@@ -20,7 +20,7 @@ int main()
         throw std::runtime_error("Failed to load resource/ipaexm.ttf");
     }
 
-    CartesianChart chart("Chart1");
+    CartesianChart chart;
     CartesianData data;
     data.data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
     data.type = CartesianData::PLOT_TYPE::POINT;
@@ -45,7 +45,7 @@ int main()
     pie.move(1000.f, 0.f);
     pie.setScale(0.5f, 0.5f);
 
-    RaderChart rader_chart("Rader Chart");
+    RaderChart rader_chart;
     RaderData rader_data;
     rader_data.data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}};
     rader_data.color = sf::Color::Cyan;

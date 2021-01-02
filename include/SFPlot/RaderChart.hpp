@@ -4,7 +4,6 @@
 
 class RaderChart : public sf::Drawable, public sf::Transformable
 {
-    std::string title_;
     sf::Font font_;
 
     RaderData data_;
@@ -13,7 +12,7 @@ class RaderChart : public sf::Drawable, public sf::Transformable
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void draw_point(sf::RenderTarget& target, sf::RenderStates states, const float& max_value) const;
 public:
-    RaderChart(const std::string& title);
+    RaderChart();
     virtual ~RaderChart();
 
     /* setter functions */

@@ -62,8 +62,8 @@ void CartesianChart::draw_line(sf::RenderTarget& target, sf::RenderStates states
 
 }
 
-CartesianChart::CartesianChart(const std::string& title)
-    : title_(title), font_(), data_(), axes_()
+CartesianChart::CartesianChart()
+    : font_(), data_(), axes_()
 {
 }
 

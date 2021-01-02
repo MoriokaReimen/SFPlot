@@ -31,8 +31,8 @@ void RaderChart::draw_point(sf::RenderTarget& target, sf::RenderStates states, c
     }
 }
 
-RaderChart::RaderChart(const std::string& title)
-    : title_(title), font_(), data_(), axes_()
+RaderChart::RaderChart()
+    : font_(), data_(), axes_()
 {
 }
 

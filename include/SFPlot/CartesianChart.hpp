@@ -9,7 +9,6 @@
 
 class CartesianChart : public sf::Drawable, public sf::Transformable
 {
-    std::string title_;
     sf::Font font_;
 
     CartesianData data_;
@@ -20,7 +19,7 @@ class CartesianChart : public sf::Drawable, public sf::Transformable
                     const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
     void draw_line(sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
 public:
-    CartesianChart(const std::string& title);
+    CartesianChart();
     virtual ~CartesianChart();
 
     /* setter functions */
