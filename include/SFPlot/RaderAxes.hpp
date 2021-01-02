@@ -9,6 +9,8 @@ class RaderAxes : public sf::Transformable, public sf::Drawable
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void draw_axes(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
+    static const float RADIUS;
+
     RaderAxes();
     virtual ~RaderAxes();
     RaderAxes& operator=(const RaderAxes& other) = default;

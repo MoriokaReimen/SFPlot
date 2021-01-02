@@ -2,6 +2,8 @@
 #include <vector>
 #include <cmath>
 
+const float RaderAxes::RADIUS(250.f);
+
 void RaderAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();

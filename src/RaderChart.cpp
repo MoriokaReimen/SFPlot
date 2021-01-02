@@ -18,13 +18,13 @@ void RaderChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 void RaderChart::draw_point(sf::RenderTarget& target, sf::RenderStates states, const float& max_value) const
 {
-    const float RADIUS(250.f);
+    constexpr float POINT_RADIUS(5.f);
 
     for(const auto& element : data_.data) {
-        const float radius = element.value / max_value * RADIUS;
-        sf::Vector2f position(RADIUS + radius * std::sin(element.angle / 180.f * M_PI) - 5.f,
-                              RADIUS - radius * std::cos(element.angle / 180.f * M_PI) - 5.f);
-        sf::CircleShape point(5.f);
+        const float radius = element.value / max_value * axes_.RADIUS;
+        sf::Vector2f position(axes_.RADIUS + radius * std::sin(element.angle / 180.f * M_PI) - POINT_RADIUS,
+                              axes_.RADIUS - radius * std::cos(element.angle / 180.f * M_PI) - POINT_RADIUS);
+        sf::CircleShape point(POINT_RADIUS);
         point.setPosition(position);
         point.setFillColor(data_.color);
         target.draw(point, states);
