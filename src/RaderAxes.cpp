@@ -14,8 +14,7 @@ void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) con
     /* Draw outer circle*/
     {
         std::vector<sf::Vertex> vertices;
-        for (std::size_t index = 0; index < 31; index++)
-        {
+        for (std::size_t index = 0; index < 31; index++) {
             sf::Vector2f point(RADIUS + RADIUS * std::sin(M_PI / 15 * index),
                                RADIUS + RADIUS * std::cos(M_PI / 15 * index));
             sf::Vertex vertex(point, sf::Color::White);
@@ -25,12 +24,10 @@ void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) con
     }
 
     /* Draw inner circle*/
-    for (size_t i = 1; i < 5; i++)
-    {
+    for (size_t i = 1; i < 5; i++) {
         float radius = RADIUS / 5.f * i;
         std::vector<sf::Vertex> vertices;
-        for (std::size_t index = 0; index < 31; index++)
-        {
+        for (std::size_t index = 0; index < 31; index++) {
             sf::Vector2f point(RADIUS + radius * std::sin(M_PI / 15 * index),
                                RADIUS + radius * std::cos(M_PI / 15 * index));
             sf::Vertex vertex(point, sf::Color(150.f, 150.f, 150.f));
@@ -41,8 +38,7 @@ void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) con
 
     /* Draw Line*/
     {
-        for (std::size_t index = 0; index < 4; index++)
-        {
+        for (std::size_t index = 0; index < 4; index++) {
             sf::Vertex vertices[2];
 
             sf::Vector2f start_point(RADIUS + RADIUS * std::sin(M_PI / 4 * index),

@@ -9,8 +9,7 @@ void RaderChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(axes_, states);
 
     float max_value = std::numeric_limits<float>::lowest();
-    for(const auto& element : data_.data)
-    {
+    for(const auto& element : data_.data) {
         max_value = std::max(element.value, max_value);
     }
 
@@ -21,8 +20,7 @@ void RaderChart::draw_point(sf::RenderTarget& target, sf::RenderStates states, c
 {
     const float RADIUS(250.f);
 
-    for(const auto& element : data_.data)
-    {
+    for(const auto& element : data_.data) {
         const float radius = element.value / max_value * RADIUS;
         sf::Vector2f position(RADIUS + radius * std::sin(element.angle / 180.f * M_PI) - 5.f,
                               RADIUS - radius * std::cos(element.angle / 180.f * M_PI) - 5.f);
@@ -37,7 +35,7 @@ RaderChart::RaderChart(const std::string& title)
     : title_(title), font_(), data_(), axes_()
 {
 }
-    
+
 RaderChart::~RaderChart()
 {
 }

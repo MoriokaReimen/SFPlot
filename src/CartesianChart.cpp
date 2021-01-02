@@ -8,8 +8,7 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
     const auto y_range = data_.get_y_range();
 
     target.draw(axes_, states);
-    switch (data_.type)
-    {
+    switch (data_.type) {
     case CartesianData::PLOT_TYPE::POINT:
         draw_point(target, states, x_range, y_range);
         break;
@@ -25,17 +24,16 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
 void CartesianChart::draw_point(sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
-    for (auto it = data_.data.cbegin(); it != data_.data.cend(); it++)
-    {
-            constexpr float POINT_RADIUS = 5.f;
-            const auto x = (it->x - x_range.first) / (x_range.second - x_range.first) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
-            const auto y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (it->y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y - axes_.MARGIN.y);
+    for (auto it = data_.data.cbegin(); it != data_.data.cend(); it++) {
+        constexpr float POINT_RADIUS = 5.f;
+        const auto x = (it->x - x_range.first) / (x_range.second - x_range.first) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
+        const auto y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (it->y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y - axes_.MARGIN.y);
 
-            sf::CircleShape point(POINT_RADIUS);
-            point.setFillColor(data_.color);
-            point.setPosition(x - POINT_RADIUS, y- POINT_RADIUS);
+        sf::CircleShape point(POINT_RADIUS);
+        point.setFillColor(data_.color);
+        point.setPosition(x - POINT_RADIUS, y- POINT_RADIUS);
 
-            target.draw(point, states);
+        target.draw(point, states);
     }
 
 }
@@ -43,10 +41,8 @@ void CartesianChart::draw_point(sf::RenderTarget& target, sf::RenderStates state
 void CartesianChart::draw_line(sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
-    for (auto it = data_.data.cbegin(); it != data_.data.cend(); it++)
-    {
-        if (std::next(it) != data_.data.cend())
-        {
+    for (auto it = data_.data.cbegin(); it != data_.data.cend(); it++) {
+        if (std::next(it) != data_.data.cend()) {
             auto line_start = *it;
             auto line_end = *std::next(it);
 
@@ -56,8 +52,7 @@ void CartesianChart::draw_line(sf::RenderTarget& target, sf::RenderStates states
             line_end.x = (line_end.x - x_range.first) / (x_range.second - x_range.first) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
             line_end.y = (axes_.DIMENSION.y - axes_.MARGIN.y)- (line_end.y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y -axes_.MARGIN.y);
 
-            sf::Vertex line[] =
-            {
+            sf::Vertex line[] = {
                 sf::Vertex(line_start, data_.color),
                 sf::Vertex(line_end, data_.color)
             };

@@ -23,8 +23,7 @@ float PieData::get_total() const
 {
     float total = 0.f;
 
-    for(const auto& elem : data)
-    {
+    for(const auto& elem : data) {
         total += elem.second.value;
     }
 

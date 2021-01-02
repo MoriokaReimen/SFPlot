@@ -5,10 +5,8 @@
 
 
 
-struct PieData
-{
-    struct PieElement
-    {
+struct PieData {
+    struct PieElement {
         float value;
         sf::Color color;
         PieElement();

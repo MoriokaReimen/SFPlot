@@ -4,8 +4,7 @@
 
 class CartesianAxes : public sf::Transformable, public sf::Drawable
 {
-    enum class ORIGIN_TYPE
-    {
+    enum class ORIGIN_TYPE {
         ORIGIN_ZERO,
         ORIGIN_MIDDLE
     };

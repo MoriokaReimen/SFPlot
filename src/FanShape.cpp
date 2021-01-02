@@ -4,8 +4,7 @@
 FanShape::FanShape(const float& radius, const float& start_angle, const float& end_angle)
     : radius_(radius), start_angle_(start_angle), end_angle_(end_angle)
 {
-    if(end_angle_ < start_angle_)
-    {
+    if(end_angle_ < start_angle_) {
         std::swap(end_angle_, start_angle_);
     }
 
@@ -26,8 +25,7 @@ void FanShape::set_radius(const float& radius)
 void FanShape::set_start_angle(const float& start_angle)
 {
     start_angle_ = start_angle;
-    if(end_angle_ < start_angle_)
-    {
+    if(end_angle_ < start_angle_) {
         std::swap(end_angle_, start_angle_);
     }
     update();
@@ -36,8 +34,7 @@ void FanShape::set_start_angle(const float& start_angle)
 void FanShape::set_end_angle(const float& end_angle)
 {
     end_angle_ = end_angle;
-    if(end_angle_ < start_angle_)
-    {
+    if(end_angle_ < start_angle_) {
         std::swap(end_angle_, start_angle_);
     }
     update();

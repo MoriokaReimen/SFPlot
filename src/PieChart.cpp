@@ -10,8 +10,7 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
     const float total = data_.get_total();
     float start_angle = 0U;
 
-    for(auto const& [key, val] : data_.data)
-    {
+    for(auto const& [key, val] : data_.data) {
         float angle = 360.f * val.value / total;
         FanShape shape(RADIUS, start_angle, start_angle + angle);
         shape.setFillColor(val.color);
