@@ -6,6 +6,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 
+#include "SFPlot/PieChart.hpp"
 #include "SFPlot/FanShape.hpp"
 
 int main()
@@ -28,6 +29,22 @@ int main()
     chart.set_font(font);
     chart.setPosition(50, 50);
 
+    PieData pie_data;
+    PieData::PieElement hoge_element;
+    hoge_element.color = sf::Color::Red;
+    hoge_element.value = 500.f;
+
+    PieData::PieElement fuga_element;
+    fuga_element.color = sf::Color::Blue;
+    fuga_element.value = 300.f;
+
+
+    pie_data.data.insert(std::pair<std::string, PieData::PieElement>("Hoge", hoge_element));
+    pie_data.data.insert(std::pair<std::string, PieData::PieElement>("Fuga", fuga_element));
+    PieChart pie;
+    pie.set_data(pie_data);
+    pie.move(1000.f, 0.f);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -40,9 +57,8 @@ int main()
         }
 
         window.clear(sf::Color(30, 30, 30));
-        FanShape fan(100.f);
         window.draw(chart);
-        window.draw(fan);
+        window.draw(pie);
         window.display();
     }
 

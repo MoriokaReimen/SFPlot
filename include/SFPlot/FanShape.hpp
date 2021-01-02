@@ -15,7 +15,6 @@ public:
     void set_radius(const float& radius);
     void set_start_angle(const float& start_angle);
     void set_end_angle(const float& end_angle);
-    void setColor(const sf::Color& color);
 
     /* getter function */
     float get_radius() const;

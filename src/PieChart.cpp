@@ -1,5 +1,6 @@
 #include "SFPlot/PieChart.hpp"
-static constexpr size_t POINTS(1000);
+#include "SFPlot/FanShape.hpp"
+
 static constexpr float RADIUS(250.f);
 
 void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -7,16 +8,16 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
     states.transform *= getTransform();
 
     const float total = data_.get_total();
-    size_t start = 0U;
+    float start_angle = 0U;
 
-    /*
-    for(const auto& [key, val] : data_)
+    for(auto const& [key, val] : data_.data)
     {
-        auto points = static_cast<size_t>(val.value / total) * POINTS;
-        start += points
-        // target.draw(, states);
+        float angle = 360.f * val.value / total;
+        FanShape shape(RADIUS, start_angle, start_angle + angle);
+        shape.setFillColor(val.color);
+        target.draw(shape, states);
+        start_angle += angle;
     }
-    */
 }
 
 PieChart::PieChart()
