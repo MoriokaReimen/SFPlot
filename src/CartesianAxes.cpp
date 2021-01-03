@@ -1,6 +1,7 @@
 #include "SFPlot/CartesianAxes.hpp"
 #include <cmath>
 #include <sstream>
+#include <iomanip>
 
 const sf::Vector2f CartesianAxes::DIMENSION{800.f, 600.f};
 const sf::Vector2f CartesianAxes::MARGIN{40.f, 20.f};
@@ -105,6 +106,7 @@ void CartesianAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates state
         float val = x_range_.first + i * x_step;
         std::stringstream ss;
         ss.precision(x_precision);
+        ss << std::fixed;
         ss << val;
         sf::Text legend;
         legend.setString(ss.str());
@@ -124,6 +126,8 @@ void CartesianAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates state
         float val = y_range_.first + i * y_step;
         std::stringstream ss;
         ss.precision(y_precision);
+        ss << std::fixed;
+        ss.width(5);
         ss << val;
         sf::Text legend;
         legend.setString(ss.str());
