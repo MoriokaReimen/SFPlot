@@ -21,10 +21,13 @@ int main()
     }
 
     CartesianChart chart;
-    CartesianData data;
-    data.data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
-    data.type = CartesianData::PLOT_TYPE::POINT;
-    chart.set_data(data);
+    CartesianData data1, data2;
+    data1.data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
+    data1.type = CartesianData::PLOT_TYPE::POINT;
+    data2.data = {{1.0, 4.0}, {1.0, 3.0}, {3.0, 5.0}, {4.0, 5.0}};
+    data2.type = CartesianData::PLOT_TYPE::LINE;
+    chart.push_data(data1);
+    chart.push_data(data2);
     chart.set_font(font);
     chart.setPosition(50, 50);
     chart.auto_range();
