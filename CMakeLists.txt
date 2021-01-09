@@ -9,9 +9,13 @@ option(ENABLE_SAMPLE "build sample program.(Default:OFF)" OFF)
 # import SFML library
 find_package(SFML 2.5.1 COMPONENTS system window graphics)
 if (SFML_FOUND)
+    message(STATUS "SFML found.")
     message(STATUS "SFML_INCLUDE_DIRS: ${SFML_INCLUDE_DIR}")
     message(STATUS "SFML_LIBRARIES: ${SFML_LIBRARIES}")
     message(STATUS "SFML_VERSION: ${SFML_VERSION}")
+else()
+    message(STATUS "SFML is not found in the system")
+    message(STATUS "Assume SFML is contained in build structure.")
 endif ()
 
 ###################################################################
