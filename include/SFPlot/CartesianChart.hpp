@@ -6,6 +6,7 @@
 
 #include <vector>
 #include <string>
+#include <utility>
 
 class CartesianChart : public sf::Drawable, public sf::Transformable
 {
@@ -26,9 +27,13 @@ public:
     void set_data(const CartesianData& data);
     void set_font(const sf::Font& font);
     void set_axes(const CartesianAxes& axes);
+    void auto_range();
+    void set_x_range(const float& min, const float& max);
+    void set_y_range(const float& min, const float& max);
 
     /* getter functions */
     CartesianData get_data() const;
     sf::Font get_font() const;
-    CartesianAxes get_axes() const;
+    std::pair<float, float> get_x_range() const;
+    std::pair<float, float> get_y_range() const;
 };

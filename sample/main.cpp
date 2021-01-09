@@ -27,6 +27,7 @@ int main()
     chart.set_data(data);
     chart.set_font(font);
     chart.setPosition(50, 50);
+    chart.auto_range();
 
     PieData pie_data;
     PieData::PieElement hoge_element;
