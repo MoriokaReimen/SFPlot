@@ -1,5 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <utility>
+#include <vector>
 
 struct RaderData {
     struct RaderElement {
@@ -12,4 +14,5 @@ struct RaderData {
 
     RaderData();
     virtual ~RaderData();
+    float get_max_value() const;
 };
