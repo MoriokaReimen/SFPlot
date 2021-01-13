@@ -1,5 +1,7 @@
 #include "SFPlot/CartesianData.hpp"
 
+namespace sf
+{
 CartesianData::CartesianData()
     : name(), data(), color(sf::Color::Green), type(CartesianData::PLOT_TYPE::LINE)
 {
@@ -36,3 +38,4 @@ std::pair<float, float> CartesianData::get_y_range() const
 
     return std::pair<float, float>(min_y, max_y);
 }
+};

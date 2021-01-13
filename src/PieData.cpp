@@ -1,5 +1,7 @@
 #include "SFPlot/PieData.hpp"
 
+namespace sf
+{
 PieData::PieElement::PieElement()
     : value(0.0), color(sf::Color::Green)
 {
@@ -29,3 +31,4 @@ float PieData::get_total() const
 
     return total;
 }
+};

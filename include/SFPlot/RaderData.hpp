@@ -3,6 +3,8 @@
 #include <utility>
 #include <vector>
 
+namespace sf
+{
 struct RaderData {
     struct RaderElement {
         float angle;
@@ -15,4 +17,5 @@ struct RaderData {
     RaderData();
     virtual ~RaderData();
     float get_max_value() const;
+};
 };

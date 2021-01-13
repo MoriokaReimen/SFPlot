@@ -1,6 +1,8 @@
 #include "SFPlot/CartesianChart.hpp"
 #include <limits>
 
+namespace sf
+{
 void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -161,3 +163,4 @@ std::pair<float, float> CartesianChart::get_y_range() const
 {
     return axes_.get_y_range();
 }
+};

@@ -3,8 +3,8 @@
 #include <string>
 #include <SFML/Graphics.hpp>
 
-
-
+namespace sf
+{
 struct PieData {
     struct PieElement {
         float value;
@@ -17,4 +17,5 @@ struct PieData {
     PieData();
     virtual ~PieData();
     float get_total() const;
+};
 };

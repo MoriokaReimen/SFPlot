@@ -9,6 +9,8 @@
 #include <string>
 #include <utility>
 
+namespace sf
+{
 class CartesianChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
@@ -36,4 +38,5 @@ public:
     sf::Font get_font() const;
     std::pair<float, float> get_x_range() const;
     std::pair<float, float> get_y_range() const;
+};
 };

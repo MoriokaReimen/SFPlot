@@ -3,6 +3,8 @@
 #include <utility>
 #include <SFML/Graphics.hpp>
 
+namespace sf
+{
 struct CartesianData {
     enum class PLOT_TYPE {
         POINT,
@@ -17,4 +19,5 @@ struct CartesianData {
     virtual ~CartesianData();
     std::pair<float, float> get_x_range() const;
     std::pair<float, float> get_y_range() const;
+};
 };

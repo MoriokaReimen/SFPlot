@@ -1,6 +1,8 @@
 #include "SFPlot/FanShape.hpp"
 #include <cmath>
 
+namespace sf
+{
 FanShape::FanShape(const float& radius, const float& start_angle, const float& end_angle)
     : radius_(radius), start_angle_(start_angle), end_angle_(end_angle)
 {
@@ -72,3 +74,4 @@ sf::Vector2f FanShape::getPoint(std::size_t index) const
 
     return point;
 }
+};

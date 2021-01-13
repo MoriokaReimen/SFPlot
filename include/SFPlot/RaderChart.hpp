@@ -4,6 +4,8 @@
 #include <list>
 #include <utility>
 
+namespace sf
+{
 class RaderChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
@@ -29,4 +31,5 @@ public:
     RaderAxes get_axes() const;
     float get_max_value() const;
 
+};
 };

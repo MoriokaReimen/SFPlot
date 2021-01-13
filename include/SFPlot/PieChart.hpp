@@ -3,6 +3,8 @@
 
 #include "PieData.hpp"
 
+namespace sf
+{
 class PieChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     PieData data_;
@@ -20,4 +22,5 @@ public:
     /* getter function */
     sf::Font get_font() const;
     PieData get_data() const;
+};
 };

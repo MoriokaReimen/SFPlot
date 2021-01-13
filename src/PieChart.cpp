@@ -1,6 +1,8 @@
 #include "SFPlot/PieChart.hpp"
 #include "SFPlot/FanShape.hpp"
 
+namespace sf
+{
 static constexpr float RADIUS(250.f);
 
 void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -48,3 +50,4 @@ PieData PieChart::get_data() const
 {
     return data_;
 }
+};

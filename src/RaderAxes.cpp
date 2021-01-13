@@ -3,6 +3,8 @@
 #include <cmath>
 #include <sstream>
 
+namespace sf
+{
 const float RaderAxes::RADIUS(250.f);
 
 void RaderAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
@@ -133,3 +135,4 @@ sf::Font RaderAxes::get_font() const
 {
     return font_;
 }
+};

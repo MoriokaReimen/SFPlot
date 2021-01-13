@@ -1,7 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include <utility>
-
+namespace sf
+{
 class CartesianAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
     std::pair<float, float> x_range_;
@@ -29,4 +30,5 @@ public:
     std::pair<float, float> get_x_range() const;
     std::pair<float, float> get_y_range() const;
     sf::Font get_font() const;
+};
 };

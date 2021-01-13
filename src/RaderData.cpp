@@ -1,6 +1,8 @@
 #include "SFPlot/RaderData.hpp"
 #include <limits>
 
+namespace sf
+{
 RaderData::RaderData()
     : data(), color(sf::Color::Green)
 {
@@ -22,3 +24,4 @@ float RaderData::get_max_value() const
 
     return max;
 }
+};

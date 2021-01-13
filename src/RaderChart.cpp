@@ -3,6 +3,8 @@
 #include <limits>
 #include <algorithm>
 
+namespace sf
+{
 void RaderChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -88,3 +90,4 @@ float RaderChart::get_max_value() const
 {
     return axes_.get_max_value();
 }
+};

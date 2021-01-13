@@ -3,6 +3,8 @@
 #include <sstream>
 #include <iomanip>
 
+namespace sf
+{
 const sf::Vector2f CartesianAxes::DIMENSION{800.f, 600.f};
 const sf::Vector2f CartesianAxes::MARGIN{40.f, 20.f};
 
@@ -170,3 +172,4 @@ sf::Font CartesianAxes::get_font() const
 {
     return font_;
 }
+};

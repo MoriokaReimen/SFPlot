@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+namespace sf
+{
 class RaderAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
     float max_value_;
@@ -23,4 +25,5 @@ public:
     /* getter functions */
     float get_max_value() const;
     sf::Font get_font() const;
+};
 };

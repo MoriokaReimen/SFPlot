@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
+namespace sf
+{
 class FanShape : public sf::Shape
 {
     float radius_;
@@ -22,4 +24,5 @@ public:
     float get_end_angle() const;
     virtual std::size_t getPointCount() const override;
     virtual sf::Vector2f getPoint(std::size_t index) const override;
+};
 };
