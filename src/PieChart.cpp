@@ -9,10 +9,10 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
 
-    const float total = data_.get_total();
+    const float total = data_set_.get_total();
     float start_angle = 0U;
 
-    for(auto const& [key, val] : data_.data) {
+    for(auto const& [key, val] : data_set_.data) {
         float angle = 360.f * val.value / total;
         FanShape shape(RADIUS, start_angle, start_angle + angle);
         shape.setFillColor(val.color);
@@ -22,7 +22,7 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 }
 
 PieChart::PieChart()
-    : data_(), font_()
+    : data_set_(), font_()
 {
 }
 PieChart::~PieChart()
@@ -37,7 +37,7 @@ void PieChart::set_font(const sf::Font& font)
 
 void PieChart::set_data(const PieData& data)
 {
-    data_ = data;
+    data_set_ = data;
 }
 
 /* getter function */
@@ -48,6 +48,6 @@ sf::Font PieChart::get_font() const
 
 PieData PieChart::get_data() const
 {
-    return data_;
+    return data_set_;
 }
 };

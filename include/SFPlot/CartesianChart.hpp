@@ -15,7 +15,7 @@ class CartesianChart : virtual public sf::Drawable, virtual public sf::Transform
 {
     sf::Font font_;
 
-    std::list<CartesianData> data_;
+    std::list<CartesianData> data_set_;
     CartesianAxes axes_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

@@ -10,7 +10,7 @@ class RaderChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
 
-    std::list<RaderData> data_;
+    std::list<RaderData> data_set_;
     mutable RaderAxes axes_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

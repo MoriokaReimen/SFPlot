@@ -11,8 +11,7 @@ void RaderChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
     target.draw(axes_, states);
 
-    for(const auto& data : data_)
-    {
+    for(const auto& data : data_set_) {
         draw_point(target, states, data, axes_.get_max_value());
     }
 }
@@ -33,7 +32,7 @@ void RaderChart::draw_point(sf::RenderTarget& target, sf::RenderStates states, c
 }
 
 RaderChart::RaderChart()
-    : font_(), data_(), axes_()
+    : font_(), data_set_(), axes_()
 {
 }
 
@@ -44,7 +43,7 @@ RaderChart::~RaderChart()
 /* setter functions */
 void RaderChart::push_data(const RaderData& data)
 {
-    data_.push_back(data);
+    data_set_.push_back(data);
     auto_range();
 }
 
@@ -62,8 +61,7 @@ void RaderChart::set_axes(const RaderAxes& axes)
 void RaderChart::auto_range()
 {
     auto max = std::numeric_limits<float>::lowest();
-    for(const auto& elem : data_)
-    {
+    for(const auto& elem : data_set_) {
         max = std::max(elem.get_max_value(), max);
     }
 

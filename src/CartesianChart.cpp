@@ -8,10 +8,8 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
     states.transform *= getTransform();
 
     target.draw(axes_, states);
-    for (const auto& elem : data_)
-    {
-        switch (elem.type)
-        {
+    for (const auto& elem : data_set_) {
+        switch (elem.type) {
         case CartesianData::PLOT_TYPE::POINT:
             draw_point(elem, target, states, axes_.get_x_range(), axes_.get_y_range());
             break;
@@ -27,8 +25,7 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
 void CartesianChart::draw_point(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
-    for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++)
-    {
+    for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++) {
         constexpr float POINT_RADIUS = 5.f;
         const auto x = (it->x - x_range.first) / (x_range.second - x_range.first) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
         const auto y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (it->y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y - axes_.MARGIN.y);
@@ -45,10 +42,8 @@ void CartesianChart::draw_point(const CartesianData& elem, sf::RenderTarget& tar
 void CartesianChart::draw_line(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
-    for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++)
-    {
-        if (std::next(it) != elem.data.cend())
-        {
+    for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++) {
+        if (std::next(it) != elem.data.cend()) {
             auto line_start = *it;
             auto line_end = *std::next(it);
 
@@ -58,8 +53,7 @@ void CartesianChart::draw_line(const CartesianData& elem, sf::RenderTarget& targ
             line_end.x = (line_end.x - x_range.first) / (x_range.second - x_range.first) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
             line_end.y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (line_end.y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y - axes_.MARGIN.y);
 
-            sf::Vertex line[] =
-            {
+            sf::Vertex line[] = {
                 sf::Vertex(line_start, elem.color),
                 sf::Vertex(line_end, elem.color)
             };
@@ -69,7 +63,7 @@ void CartesianChart::draw_line(const CartesianData& elem, sf::RenderTarget& targ
 }
 
 CartesianChart::CartesianChart()
-    : font_(), data_(), axes_()
+    : font_(), data_set_(), axes_()
 {
 }
 
@@ -81,7 +75,7 @@ CartesianChart::~CartesianChart()
 /* setter functions */
 void CartesianChart::push_data(const CartesianData& data)
 {
-    data_.push_back(data);
+    data_set_.push_back(data);
     auto_range();
 }
 
@@ -103,8 +97,7 @@ void CartesianChart::auto_range()
     float y_min = std::numeric_limits<float>::max();
     float y_max = std::numeric_limits<float>::lowest();
 
-    for (const auto& elem : data_)
-    {
+    for (const auto& elem : data_set_) {
         auto x_range = elem.get_x_range();
         x_min = std::min(x_range.first, x_min);
         x_max = std::max(x_range.second, x_max);
@@ -121,12 +114,9 @@ void CartesianChart::auto_range()
 void CartesianChart::set_x_range(const float& min, const float& max)
 {
     std::pair<float, float> x_range;
-    if (min > max)
-    {
+    if (min > max) {
         x_range = std::pair<float, float>(max, min);
-    }
-    else
-    {
+    } else {
         x_range = std::pair<float, float>(min, max);
     }
 
@@ -136,12 +126,9 @@ void CartesianChart::set_x_range(const float& min, const float& max)
 void CartesianChart::set_y_range(const float& min, const float& max)
 {
     std::pair<float, float> y_range;
-    if (min > max)
-    {
+    if (min > max) {
         y_range = std::pair<float, float>(max, min);
-    }
-    else
-    {
+    } else {
         y_range = std::pair<float, float>(min, max);
     }
 

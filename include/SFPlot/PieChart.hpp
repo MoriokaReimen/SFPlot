@@ -7,7 +7,7 @@ namespace sf
 {
 class PieChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
-    PieData data_;
+    PieData data_set_;
     sf::Font font_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;

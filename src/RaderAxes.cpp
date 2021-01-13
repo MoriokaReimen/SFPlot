@@ -66,8 +66,7 @@ void RaderAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates states) c
     /* Draw angle legend */
     constexpr float angle_step = 45.f;
     constexpr float MARGIN = 20.f;
-    for(int i = 0; i < 8; i++)
-    {
+    for(int i = 0; i < 8; i++) {
         float angle = angle_step * i;
         std::stringstream ss;
         ss << angle;
@@ -88,8 +87,7 @@ void RaderAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates states) c
     constexpr float X_MARGIN(20.f);
     constexpr float Y_MARGIN(10.f);
     float value_step = max_value_ / 5;
-    for(int i = 0; i < 6; i++)
-    {
+    for(int i = 0; i < 6; i++) {
         float value = value_step * i;
         std::stringstream ss;
         ss << value;
