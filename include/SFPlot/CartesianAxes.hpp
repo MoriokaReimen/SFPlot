@@ -2,7 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <utility>
 
-class CartesianAxes : public sf::Transformable, public sf::Drawable
+class CartesianAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
     std::pair<float, float> x_range_;
     std::pair<float, float> y_range_;

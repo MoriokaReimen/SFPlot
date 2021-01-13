@@ -1,7 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 
-class RaderAxes : public sf::Transformable, public sf::Drawable
+class RaderAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
     float max_value_;
     sf::Font font_;

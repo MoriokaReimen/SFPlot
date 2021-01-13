@@ -3,7 +3,7 @@
 
 #include "PieData.hpp"
 
-class PieChart : public sf::Drawable, public sf::Transformable
+class PieChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     PieData data_;
     sf::Font font_;

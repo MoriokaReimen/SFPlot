@@ -2,7 +2,7 @@
 #include "SFPlot/RaderData.hpp"
 #include "SFPlot/RaderAxes.hpp"
 
-class RaderChart : public sf::Drawable, public sf::Transformable
+class RaderChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
 

@@ -9,7 +9,7 @@
 #include <string>
 #include <utility>
 
-class CartesianChart : public sf::Drawable, public sf::Transformable
+class CartesianChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
 
