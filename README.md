@@ -2,6 +2,11 @@ SFPlot
 =================================
 SFML graph plotting library
 
+<p align="center">
+<img src="https://img.shields.io/badge/Language-C++-blue?style=for-the-badge&logo=c%2B%2Bl" />
+<img src="https://img.shields.io/badge/SFML-Required-red?style=for-the-badge&logo=sfml" />
+</p>
+
 ![Sample.png](doc/Sample.png)
 
 # Description
