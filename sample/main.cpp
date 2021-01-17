@@ -21,39 +21,34 @@ int main()
     }
 
     sf::CartesianChart chart;
-    sf::CartesianData data1, data2;
-    data1.data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
-    data1.type = sf::CartesianData::PLOT_TYPE::POINT;
-    data2.data = {{1.0, 4.0}, {1.0, 3.0}, {3.0, 5.0}, {4.0, 5.0}};
-    data2.type = sf::CartesianData::PLOT_TYPE::LINE;
-    chart.push_data(data1);
-    chart.push_data(data2);
+    auto data1 = chart.add_data();
+    data1->data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
+    data1->type = sf::CartesianData::PLOT_TYPE::POINT;
+    auto data2 = chart.add_data();
+    data2->data = {{1.0, 4.0}, {1.0, 3.0}, {3.0, 5.0}, {4.0, 5.0}};
+    data2->type = sf::CartesianData::PLOT_TYPE::LINE;
     chart.set_font(font);
     chart.setPosition(50, 50);
     chart.auto_range();
 
-    sf::PieData pie_data;
-    sf::PieData::PieElement hoge_element;
-    hoge_element.color = sf::Color::Red;
-    hoge_element.value = 500.f;
-
-    sf::PieData::PieElement fuga_element;
-    fuga_element.color = sf::Color::Blue;
-    fuga_element.value = 300.f;
-
-
-    pie_data.data.insert(std::pair<std::string, sf::PieData::PieElement>("Hoge", hoge_element));
-    pie_data.data.insert(std::pair<std::string, sf::PieData::PieElement>("Fuga", fuga_element));
     sf::PieChart pie;
-    pie.set_data(pie_data);
+    auto pie_data1 = pie.add_data();
+    auto pie_data2 = pie.add_data();
+    pie_data1->color = sf::Color::Blue;
+    pie_data1->value = 500.f;
+    pie_data1->title = "fuga";
+    pie_data2->color = sf::Color::Red;
+    pie_data2->value = 300.f;
+    pie_data2->title = "hoge";
+
     pie.move(1000.f, 0.f);
     pie.setScale(0.5f, 0.5f);
 
     sf::RaderChart rader_chart;
-    sf::RaderData rader_data;
-    rader_data.data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}, {90.f, 120.f}};
-    rader_data.color = sf::Color::Cyan;
-    rader_chart.push_data(rader_data);
+    auto rader_data1 = rader_chart.add_data();
+    rader_data1->data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}, {90.f, 120.f}};
+    rader_data1->color = sf::Color::Cyan;
+    rader_chart.auto_range();
     rader_chart.move(1000.f, 400.f);
     rader_chart.set_font(font);
 

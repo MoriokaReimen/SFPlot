@@ -9,12 +9,12 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
 
     target.draw(axes_, states);
     for (const auto& elem : data_set_) {
-        switch (elem.type) {
+        switch (elem->type) {
         case CartesianData::PLOT_TYPE::POINT:
-            draw_point(elem, target, states, axes_.get_x_range(), axes_.get_y_range());
+            draw_point(*elem, target, states, axes_.get_x_range(), axes_.get_y_range());
             break;
         case CartesianData::PLOT_TYPE::LINE:
-            draw_line(elem, target, states, axes_.get_x_range(), axes_.get_y_range());
+            draw_line(*elem, target, states, axes_.get_x_range(), axes_.get_y_range());
             break;
         default:
             break;
@@ -73,7 +73,16 @@ CartesianChart::~CartesianChart()
 }
 
 /* setter functions */
-void CartesianChart::push_data(const CartesianData& data)
+std::shared_ptr<CartesianData> CartesianChart::add_data()
+{
+    auto data = std::make_shared<CartesianData>();
+    data_set_.push_back(data);
+    auto_range();
+
+    return data;
+}
+
+void CartesianChart::add_data(std::shared_ptr<CartesianData> data)
 {
     data_set_.push_back(data);
     auto_range();
@@ -85,11 +94,6 @@ void CartesianChart::set_font(const sf::Font& font)
     axes_.set_font(font_);
 }
 
-void CartesianChart::set_axes(const CartesianAxes& axes)
-{
-    axes_ = axes;
-}
-
 void CartesianChart::auto_range()
 {
     float x_min = std::numeric_limits<float>::max();
@@ -98,11 +102,11 @@ void CartesianChart::auto_range()
     float y_max = std::numeric_limits<float>::lowest();
 
     for (const auto& elem : data_set_) {
-        auto x_range = elem.get_x_range();
+        auto x_range = elem->get_x_range();
         x_min = std::min(x_range.first, x_min);
         x_max = std::max(x_range.second, x_max);
 
-        auto y_range = elem.get_y_range();
+        auto y_range = elem->get_y_range();
         y_min = std::min(y_range.first, y_min);
         y_max = std::max(y_range.second, y_max);
     }
@@ -149,5 +153,10 @@ std::pair<float, float> CartesianChart::get_x_range() const
 std::pair<float, float> CartesianChart::get_y_range() const
 {
     return axes_.get_y_range();
+}
+
+std::shared_ptr<CartesianData> CartesianChart::get_data(const std::size_t& index)
+{
+    return data_set_[index];
 }
 };

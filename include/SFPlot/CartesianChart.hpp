@@ -5,7 +5,7 @@
 #include "CartesianData.hpp"
 
 #include <vector>
-#include <list>
+#include <memory>
 #include <string>
 #include <utility>
 
@@ -15,7 +15,7 @@ class CartesianChart : virtual public sf::Drawable, virtual public sf::Transform
 {
     sf::Font font_;
 
-    std::list<CartesianData> data_set_;
+    std::vector<std::shared_ptr<CartesianData>> data_set_;
     CartesianAxes axes_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -27,9 +27,9 @@ public:
     virtual ~CartesianChart();
 
     /* setter functions */
-    void push_data(const CartesianData& data);
+    std::shared_ptr<CartesianData> add_data();
+    void add_data(std::shared_ptr<CartesianData> data);
     void set_font(const sf::Font& font);
-    void set_axes(const CartesianAxes& axes);
     void auto_range();
     void set_x_range(const float& min, const float& max);
     void set_y_range(const float& min, const float& max);
@@ -38,5 +38,6 @@ public:
     sf::Font get_font() const;
     std::pair<float, float> get_x_range() const;
     std::pair<float, float> get_y_range() const;
+    std::shared_ptr<CartesianData> get_data(const std::size_t& index);
 };
 };
