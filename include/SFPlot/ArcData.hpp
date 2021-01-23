@@ -6,5 +6,6 @@ namespace sf
 struct ArcData {
     sf::Color color;
     float value;
+    ArcData();
 };
 };

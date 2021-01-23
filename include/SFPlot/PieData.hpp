@@ -8,5 +8,6 @@ namespace sf
 struct PieData {
     float value;
     sf::Color color;
+    PieData();
 };
 };

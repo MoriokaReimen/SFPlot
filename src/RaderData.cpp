@@ -1,10 +1,11 @@
 #include "SFPlot/RaderData.hpp"
+#include "SFPlot/Utility.hpp"
 #include <limits>
 
 namespace sf
 {
 RaderData::RaderData()
-    : data(), color(sf::Color::Green)
+    : data(), color(getRandomColor())
 {
 
 }

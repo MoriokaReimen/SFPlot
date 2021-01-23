@@ -1,9 +1,10 @@
 #include "SFPlot/CartesianData.hpp"
+#include "SFPlot/Utility.hpp"
 
 namespace sf
 {
 CartesianData::CartesianData()
-    : data(), color(sf::Color::Green), type(CartesianData::PLOT_TYPE::LINE)
+    : data(), color(getRandomColor()), type(CartesianData::PLOT_TYPE::LINE)
 {
 }
 

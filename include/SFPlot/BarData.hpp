@@ -6,5 +6,6 @@ namespace sf
 struct BarData {
     sf::Color color;
     float value;
+    BarData();
 };
 };

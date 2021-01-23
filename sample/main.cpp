@@ -38,9 +38,7 @@ int main()
     sf::PieChart pie;
     auto pie_data1 = pie.addData();
     auto pie_data2 = pie.addData();
-    pie_data1->color = sf::Color::Blue;
     pie_data1->value = 500.f;
-    pie_data2->color = sf::Color::Red;
     pie_data2->value = 300.f;
 
 
@@ -50,7 +48,6 @@ int main()
     sf::RaderChart rader_chart;
     auto rader_data1 = rader_chart.addData();
     rader_data1->data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}, {90.f, 120.f}};
-    rader_data1->color = sf::Color::Cyan;
     rader_chart.autoRange();
     rader_chart.move(1000.f, 400.f);
 
@@ -58,10 +55,8 @@ int main()
     bar_meter.setMinRange(0.f);
     bar_meter.setMaxRange(100.f);
     auto bar_data1 = bar_meter.addData();
-    bar_data1->color = sf::Color::Green;
     bar_data1->value = 50.f;
     auto bar_data2 = bar_meter.addData();
-    bar_data2->color = sf::Color::Cyan;
     bar_data2->value = 70.f;
     bar_meter.setPosition(100, 800);
 
@@ -69,13 +64,10 @@ int main()
     arc_meter.setMinRange(0.f);
     arc_meter.setMaxRange(100.f);
     auto arc_data1 = arc_meter.addData();
-    arc_data1->color = sf::Color::Green;
     arc_data1->value = 50;
     auto arc_data2 = arc_meter.addData();
-    arc_data2->color = sf::Color::Red;
     arc_data2->value = 70;
     auto arc_data3 = arc_meter.addData();
-    arc_data3->color = sf::Color::Blue;
     arc_data3->value = 80;
     arc_meter.setPosition(600, 800);
 
