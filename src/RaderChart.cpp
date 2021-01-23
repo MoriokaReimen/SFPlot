@@ -38,7 +38,7 @@ float RaderChart::getMaxValue() const
 }
 
 RaderChart::RaderChart()
-    : font_(plot_config.font), data_set_(), axes_()
+    : data_set_(), axes_()
 {
 }
 
@@ -65,8 +65,22 @@ void RaderChart::addData(std::shared_ptr<RaderData> data)
 
 void RaderChart::setFont(const sf::Font& font)
 {
-    font_ = font;
     axes_.setFont(font_);
+}
+
+void RaderChart::setFontColor(const sf::Color& font_color)
+{
+    axes_.setFontColor(font_color);
+}
+
+void RaderChart::setAxesColor(const sf::Color& axes_color)
+{
+    axes_.setAxesColor(axes_color);
+}
+
+void RaderChart::setScaleColor(const sf::Color& scale_color)
+{
+    axes_.setScaleColor(scale_color);
 }
 
 void RaderChart::setAxes(const RaderAxes& axes)
@@ -92,7 +106,22 @@ void RaderChart::setMaxValue(const float& max)
 /* getter functions */
 sf::Font RaderChart::getFont() const
 {
-    return font_;
+    return axes_.getFont();
+}
+
+sf::Color RaderChart::getFontColor() const
+{
+    return axes_.getFontColor();
+}
+
+sf::Color RaderChart::getAxesColor() const
+{
+    return axes_.getAxesColor();
+}
+
+sf::Color RaderChart::getScaleColor() const
+{
+    return axes_.getScaleColor();
 }
 
 RaderAxes RaderChart::getAxes() const

@@ -13,8 +13,6 @@ namespace sf
 {
 class CartesianChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
-    sf::Font font_;
-
     std::vector<std::shared_ptr<CartesianData>> data_set_;
     CartesianAxes axes_;
 
@@ -30,12 +28,18 @@ public:
     std::shared_ptr<CartesianData> addData();
     void addData(std::shared_ptr<CartesianData> data);
     void setFont(const sf::Font& font);
+    void setFontColor(const sf::Color& font_color);
+    void setAxesColor(const sf::Color& axes_color);
+    void setScaleColor(const sf::Color& axes_color);
     void autoRange();
     void setRangeX(const float& min, const float& max);
     void setRangeY(const float& min, const float& max);
 
     /* getter functions */
     sf::Font getFont() const;
+    sf::Color getFontColor() const;
+    sf::Color getAxesColor() const;
+    sf::Color getScaleColor() const;
     std::pair<float, float> getRangeX() const;
     std::pair<float, float> getRangeY() const;
     std::shared_ptr<CartesianData> getData(const std::size_t& index);

@@ -27,7 +27,7 @@ void BarMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
             sf::Text legend;
             legend.setString(ss.str());
             legend.setFont(font_);
-            legend.setFillColor(sf::Color::White);
+            legend.setFillColor(font_color_);
             legend.setCharacterSize(15);
             legend.setOrigin(0, legend.getGlobalBounds().height / 2);
             legend.setPosition(120.f, offset_y + 10.f);
@@ -39,7 +39,7 @@ void BarMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 BarMeter::BarMeter(const float &min_range, const float &max_range)
-    : font_(plot_config.font), data_set_(), range_(min_range, max_range)
+    : font_(plot_config.font), font_color_(plot_config.font_color), data_set_(), range_(min_range, max_range)
 {
 }
 
@@ -82,6 +82,11 @@ void BarMeter::setMinRange(const float &min_range)
 sf::Font BarMeter::getFont() const
 {
     return font_;
+}
+
+sf::Color BarMeter::getFontColor() const
+{
+    return font_color_;
 }
 
 std::shared_ptr<BarData> BarMeter::getData(const std::size_t &index)

@@ -44,7 +44,7 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
         sf::Text legend;
         legend.setString(ss.str());
         legend.setFont(font_);
-        legend.setFillColor(sf::Color::White);
+        legend.setFillColor(font_color_);
         legend.setCharacterSize(15);
         legend.setOrigin(legend.getGlobalBounds().width / 2, legend.getGlobalBounds().height / 2);
         legend.setPosition(50.f, 50.f);
@@ -53,7 +53,7 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 ArcMeter::ArcMeter(const float &min_range, const float& max_range)
-    : font_(plot_config.font), data_set_(), range_(0.f, 100.f)
+    : font_(plot_config.font), font_color_(plot_config.font_color), data_set_(), range_(0.f, 100.f)
 {
 }
 
@@ -65,6 +65,11 @@ ArcMeter::~ArcMeter()
 void ArcMeter::setFont(const sf::Font &font)
 {
     font_ = font;
+}
+
+void ArcMeter::setFontColor(const sf::Color& font_color)
+{
+    font_color_ = font_color;
 }
 
 void ArcMeter::setMaxRange(const float &max_range)
@@ -98,6 +103,11 @@ void ArcMeter::addData(std::shared_ptr<ArcData> data)
 sf::Font ArcMeter::getFont() const
 {
     return font_;
+}
+
+sf::Color ArcMeter::getFontColor() const
+{
+    return font_color_;
 }
 
 std::pair<float, float> ArcMeter::getRange() const

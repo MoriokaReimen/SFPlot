@@ -25,7 +25,7 @@ void RaderAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) cons
         for (std::size_t index = 0; index < 31; index++) {
             sf::Vector2f point(RADIUS + RADIUS * std::sin(M_PI / 15 * index),
                                RADIUS + RADIUS * std::cos(M_PI / 15 * index));
-            sf::Vertex vertex(point, sf::Color::White);
+            sf::Vertex vertex(point, axes_color_);
             vertices.push_back(vertex);
         }
         target.draw(&vertices[0], vertices.size(), sf::LineStrip, states);
@@ -38,7 +38,7 @@ void RaderAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) cons
         for (std::size_t index = 0; index < 31; index++) {
             sf::Vector2f point(RADIUS + radius * std::sin(M_PI / 15 * index),
                                RADIUS + radius * std::cos(M_PI / 15 * index));
-            sf::Vertex vertex(point, sf::Color(150.f, 150.f, 150.f));
+            sf::Vertex vertex(point, scale_color_);
             vertices.push_back(vertex);
         }
         target.draw(&vertices[0], vertices.size(), sf::LineStrip, states);
@@ -51,11 +51,11 @@ void RaderAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) cons
 
             sf::Vector2f start_point(RADIUS + RADIUS * std::sin(M_PI / 4 * index),
                                      RADIUS + RADIUS * std::cos(M_PI / 4 * index));
-            vertices[0] = sf::Vertex(start_point, sf::Color::White);
+            vertices[0] = sf::Vertex(start_point, axes_color_);
 
             sf::Vector2f end_point(RADIUS + RADIUS * std::sin(M_PI / 4 * index + M_PI),
                                    RADIUS + RADIUS * std::cos(M_PI / 4 * index + M_PI));
-            vertices[1] = sf::Vertex(end_point, sf::Color::White);
+            vertices[1] = sf::Vertex(end_point, axes_color_);
 
             target.draw(vertices, 2, sf::Lines, states);
         }
@@ -74,7 +74,7 @@ void RaderAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) co
         sf::Text legend;
         legend.setString(ss.str());
         legend.setFont(font_);
-        legend.setFillColor(sf::Color::White);
+        legend.setFillColor(font_color_);
         legend.setCharacterSize(15);
         legend.setOrigin(legend.getGlobalBounds().width / 2.0, legend.getGlobalBounds().height / 2.0);
         legend.setRotation(angle);
@@ -95,7 +95,7 @@ void RaderAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) co
         sf::Text legend;
         legend.setString(ss.str());
         legend.setFont(font_);
-        legend.setFillColor(sf::Color::White);
+        legend.setFillColor(font_color_);
         legend.setCharacterSize(15);
         legend.setOrigin(legend.getGlobalBounds().width / 2.0, legend.getGlobalBounds().height / 2.0);
         sf::Vector2f position(RADIUS - X_MARGIN, RADIUS - RADIUS / 5 * i - Y_MARGIN);
@@ -105,7 +105,8 @@ void RaderAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) co
 }
 
 RaderAxes::RaderAxes()
-    : max_value_(0.0), font_(plot_config.font)
+    : max_value_(0.0), font_(plot_config.font), font_color_(plot_config.font_color),
+      axes_color_(plot_config.axes_color), scale_color_(plot_config.scale_color)
 {
 }
 
@@ -124,6 +125,21 @@ void RaderAxes::setFont(const sf::Font& font)
     font_ = font;
 }
 
+void RaderAxes::setFontColor(const sf::Color& font_color)
+{
+    font_color_ = font_color;
+}
+
+void RaderAxes::setAxesColor(const sf::Color& axes_color)
+{
+    axes_color_ = axes_color;
+}
+
+void RaderAxes::setScaleColor(const sf::Color& scale_color)
+{
+    scale_color_ = scale_color;
+}
+
 /* getter functions ***************************************************/
 float RaderAxes::getMaxValue() const
 {
@@ -134,4 +150,20 @@ sf::Font RaderAxes::getFont() const
 {
     return font_;
 }
+
+sf::Color RaderAxes::getFontColor() const
+{
+    return font_color_;
+}
+
+sf::Color RaderAxes::getAxesColor() const
+{
+    return axes_color_;
+}
+
+sf::Color RaderAxes::getScaleColor() const
+{
+    return scale_color_;
+}
+
 };

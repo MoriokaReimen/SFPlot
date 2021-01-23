@@ -21,6 +21,9 @@ int main()
     }
 
     sf::plot_config.font = font;
+    sf::plot_config.font_color = sf::Color::White;
+    sf::plot_config.axes_color = sf::Color::White;
+    sf::plot_config.scale_color = sf::Color(100.f, 100.f, 100.f);
 
     sf::CartesianChart chart;
     auto data1 = chart.addData();

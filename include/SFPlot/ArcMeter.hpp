@@ -10,6 +10,7 @@ namespace sf
 class ArcMeter : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
+    sf::Color font_color_;
     std::vector<std::shared_ptr<ArcData>> data_set_;
     std::pair<float, float> range_;
 
@@ -20,6 +21,7 @@ public:
 
     /* setter functions */
     void setFont(const sf::Font& font);
+    void setFontColor(const sf::Color& color);
     void setMaxRange(const float& max_range);
     void setMinRange(const float& min_range);
     std::shared_ptr<ArcData> addData();
@@ -27,6 +29,7 @@ public:
 
     /* getter functions */
     sf::Font getFont() const;
+    sf::Color getFontColor() const;
     float getValue() const;
     std::pair<float, float> getRange() const;
     float getMaxRange() const;

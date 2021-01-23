@@ -64,7 +64,7 @@ void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& targe
 }
 
 CartesianChart::CartesianChart()
-    : font_(plot_config.font), data_set_(), axes_()
+    : data_set_(), axes_()
 {
 }
 
@@ -91,8 +91,22 @@ void CartesianChart::addData(std::shared_ptr<CartesianData> data)
 
 void CartesianChart::setFont(const sf::Font& font)
 {
-    font_ = font;
-    axes_.setFont(font_);
+    axes_.setFont(font);
+}
+
+void CartesianChart::setFontColor(const sf::Color& font_color)
+{
+    axes_.setFontColor(font_color);
+}
+
+void CartesianChart::setAxesColor(const sf::Color& axes_color)
+{
+    axes_.setAxesColor(axes_color);
+}
+
+void CartesianChart::setScaleColor(const sf::Color& scale_color)
+{
+    axes_.setScaleColor(scale_color);
 }
 
 void CartesianChart::autoRange()
@@ -143,7 +157,22 @@ void CartesianChart::setRangeY(const float& min, const float& max)
 /* getter functions */
 sf::Font CartesianChart::getFont() const
 {
-    return font_;
+    return axes_.getFont();
+}
+
+sf::Color CartesianChart::getFontColor() const
+{
+    return axes_.getFontColor();
+}
+
+sf::Color CartesianChart::getAxesColor() const
+{
+    return axes_.getAxesColor();
+}
+
+sf::Color CartesianChart::getScaleColor() const
+{
+    return axes_.getScaleColor();
 }
 
 std::pair<float, float> CartesianChart::getRangeX() const

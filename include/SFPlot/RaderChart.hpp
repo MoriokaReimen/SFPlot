@@ -25,13 +25,19 @@ public:
     std::shared_ptr<RaderData> addData();
     void addData(std::shared_ptr<RaderData> data);
     void setFont(const sf::Font& font);
+    void setFontColor(const sf::Color& font_color);
+    void setAxesColor(const sf::Color& axes_color);
+    void setScaleColor(const sf::Color& scale_color);
     void setAxes(const RaderAxes& axes);
     void autoRange();
     void setMaxValue(const float& max);
 
     /* getter functions */
     sf::Font getFont() const;
+    sf::Color getFontColor() const;
     RaderAxes getAxes() const;
     std::shared_ptr<RaderData> getData(const std::size_t& index);
+    sf::Color getAxesColor() const;
+    sf::Color getScaleColor() const;
 };
 };

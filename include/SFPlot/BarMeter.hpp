@@ -10,6 +10,7 @@ namespace sf
 class BarMeter : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
+    sf::Color font_color_;
     std::vector<std::shared_ptr<BarData>> data_set_;
     std::pair<float, float> range_;
 
@@ -20,6 +21,7 @@ public:
 
     /* setter functions */
     void setFont(const sf::Font& font);
+    void setFontColor(const sf::Color& color);
     std::shared_ptr<BarData> addData();
     void addData(std::shared_ptr<BarData> data);
     void setMaxRange(const float& max_range);
@@ -27,6 +29,7 @@ public:
 
     /* getter functions */
     sf::Font getFont() const;
+    sf::Color getFontColor() const;
     std::shared_ptr<BarData> getData(const std::size_t& index);
     std::pair<float, float> getRange() const;
     float getMaxRange() const;

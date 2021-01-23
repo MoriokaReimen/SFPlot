@@ -3,10 +3,10 @@
 
 namespace sf
 {
-struct PlotConfig
-{
+struct PlotConfig {
     sf::Color back_ground_color;
-    sf::Color line_color;
+    sf::Color axes_color;
+    sf::Color scale_color;
     sf::Font  font;
     sf::Color font_color;
 };

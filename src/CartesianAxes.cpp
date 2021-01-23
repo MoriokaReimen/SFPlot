@@ -29,8 +29,8 @@ void CartesianAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) 
         x_end = sf::Vector2f(DIMENSION.x,  DIMENSION.y - MARGIN.y);
 
         sf::Vertex x_axes[] = {
-            sf::Vertex(x_start, sf::Color::White),
-            sf::Vertex(x_end, sf::Color::White)
+            sf::Vertex(x_start, axes_color_),
+            sf::Vertex(x_end, axes_color_)
         };
         target.draw(x_axes, 2, sf::Lines, states);
     }
@@ -43,8 +43,8 @@ void CartesianAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) 
         x_end = sf::Vector2f(DIMENSION.x, DIMENSION.y - MARGIN.y - i * (DIMENSION.y - MARGIN.y ) / 9);
 
         sf::Vertex x_axes[] = {
-            sf::Vertex(x_start, sf::Color(150, 150, 150)),
-            sf::Vertex(x_end, sf::Color(150, 150, 150))
+            sf::Vertex(x_start, scale_color_),
+            sf::Vertex(x_end, scale_color_)
         };
         target.draw(x_axes, 2, sf::Lines, states);
     }
@@ -57,8 +57,8 @@ void CartesianAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) 
         y_end = sf::Vector2f(MARGIN.x,  DIMENSION.y - MARGIN.y);
 
         sf::Vertex y_axes[] = {
-            sf::Vertex(y_start, sf::Color::White),
-            sf::Vertex(y_end, sf::Color::White)
+            sf::Vertex(y_start, axes_color_),
+            sf::Vertex(y_end, axes_color_)
         };
         target.draw(y_axes, 2, sf::Lines, states);
     }
@@ -71,8 +71,8 @@ void CartesianAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) 
         y_end = sf::Vector2f(MARGIN.x + i * (DIMENSION.x - MARGIN.x) / 9,  DIMENSION.y - MARGIN.y);
 
         sf::Vertex y_axes[] = {
-            sf::Vertex(y_start, sf::Color(150, 150, 150)),
-            sf::Vertex(y_end, sf::Color(150, 150, 150))
+            sf::Vertex(y_start, scale_color_),
+            sf::Vertex(y_end, scale_color_)
         };
         target.draw(y_axes, 2, sf::Lines, states);
     }
@@ -94,7 +94,7 @@ void CartesianAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states
         sf::Text legend;
         legend.setString(ss.str());
         legend.setFont(font_);
-        legend.setFillColor(sf::Color::White);
+        legend.setFillColor(font_color_);
         legend.setCharacterSize(15);
         legend.setOrigin(legend.getGlobalBounds().width / 2.0, legend.getGlobalBounds().height / 2.0);
         legend.setPosition(MARGIN.x + i * (DIMENSION.x - MARGIN.x) / 9, DIMENSION.y - MARGIN.y + 10.f);
@@ -115,7 +115,7 @@ void CartesianAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states
         sf::Text legend;
         legend.setString(ss.str());
         legend.setFont(font_);
-        legend.setFillColor(sf::Color::White);
+        legend.setFillColor(font_color_);
         legend.setCharacterSize(15);
         legend.setOrigin(legend.getGlobalBounds().width, legend.getGlobalBounds().height);
         legend.setPosition(MARGIN.x - 10.f, DIMENSION.y - MARGIN.y - i * (DIMENSION.y - MARGIN.y ) / 9);
@@ -124,7 +124,8 @@ void CartesianAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states
 }
 
 CartesianAxes::CartesianAxes()
-    : x_range_(), y_range_(), font_(plot_config.font)
+    : x_range_(), y_range_(), font_(plot_config.font), font_color_(plot_config.font_color),
+      axes_color_(plot_config.axes_color), scale_color_(plot_config.scale_color)
 {
 
 }
@@ -149,6 +150,22 @@ void CartesianAxes::setFont(const sf::Font& font)
     font_ = font;
 }
 
+void CartesianAxes::setAxesColor(const sf::Color& axes_color)
+{
+    axes_color_ = axes_color;
+}
+
+void CartesianAxes::setScaleColor(const sf::Color& scale_color)
+{
+    scale_color_ = scale_color;
+}
+
+
+void CartesianAxes::setFontColor(const sf::Color& font_color)
+{
+    font_color_ = font_color;
+}
+
 /* getter functions **************************************************/
 std::pair<float, float> CartesianAxes::getRangeX() const
 {
@@ -164,4 +181,19 @@ sf::Font CartesianAxes::getFont() const
 {
     return font_;
 }
+
+sf::Color CartesianAxes::getFontColor() const
+{
+    return font_color_;
+}
+sf::Color CartesianAxes::getAxesColor() const
+{
+    return axes_color_;
+}
+
+sf::Color CartesianAxes::getScaleColor() const
+{
+    return scale_color_;
+}
+
 };
