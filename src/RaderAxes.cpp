@@ -2,6 +2,7 @@
 #include <vector>
 #include <cmath>
 #include <sstream>
+#include "SFPlot/PlotConfig.hpp"
 
 namespace sf
 {
@@ -104,7 +105,7 @@ void RaderAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) co
 }
 
 RaderAxes::RaderAxes()
-    : max_value_(0.0), font_()
+    : max_value_(0.0), font_(plot_config.font)
 {
 }
 

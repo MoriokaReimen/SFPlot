@@ -15,7 +15,7 @@ class BarMeter : virtual public sf::Drawable, virtual public sf::Transformable
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 public:
-    BarMeter(const float& min_range = 0.f, const float& max_range = 0.f);
+    BarMeter(const float& min_range = 0.f, const float& max_range = 100.f);
     virtual ~BarMeter();
 
     /* setter functions */

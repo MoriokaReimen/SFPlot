@@ -1,5 +1,6 @@
 #include "SFPlot/CartesianChart.hpp"
 #include <limits>
+#include "SFPlot/PlotConfig.hpp"
 
 namespace sf
 {
@@ -63,7 +64,7 @@ void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& targe
 }
 
 CartesianChart::CartesianChart()
-    : font_(), data_set_(), axes_()
+    : font_(plot_config.font), data_set_(), axes_()
 {
 }
 

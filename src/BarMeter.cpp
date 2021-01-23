@@ -1,5 +1,6 @@
 #include "SFPlot/BarMeter.hpp"
 #include <sstream>
+#include "SFPlot/PlotConfig.hpp"
 
 static constexpr float BAR_MAX_WIDTH = 100.f;
 namespace sf
@@ -38,7 +39,7 @@ void BarMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 BarMeter::BarMeter(const float &min_range, const float &max_range)
-    : font_(), data_set_(), range_(0.f, 100.f)
+    : font_(plot_config.font), data_set_(), range_(min_range, max_range)
 {
 }
 

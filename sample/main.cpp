@@ -20,6 +20,8 @@ int main()
         throw std::runtime_error("Failed to load resource/ipaexm.ttf");
     }
 
+    sf::plot_config.font = font;
+
     sf::CartesianChart chart;
     auto data1 = chart.addData();
     data1->data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
@@ -27,7 +29,6 @@ int main()
     auto data2 = chart.addData();
     data2->data = {{1.0, 4.0}, {1.0, 3.0}, {3.0, 5.0}, {4.0, 5.0}};
     data2->type = sf::CartesianData::PLOT_TYPE::LINE;
-    chart.setFont(font);
     chart.setPosition(50, 50);
     chart.autoRange();
 
@@ -49,10 +50,8 @@ int main()
     rader_data1->color = sf::Color::Cyan;
     rader_chart.autoRange();
     rader_chart.move(1000.f, 400.f);
-    rader_chart.setFont(font);
 
     sf::BarMeter bar_meter;
-    bar_meter.setFont(font);
     bar_meter.setMinRange(0.f);
     bar_meter.setMaxRange(100.f);
     auto bar_data1 = bar_meter.addData();
@@ -63,9 +62,7 @@ int main()
     bar_data2->value = 70.f;
     bar_meter.setPosition(100, 800);
 
-
     sf::ArcMeter arc_meter;
-    arc_meter.setFont(font);
     arc_meter.setMinRange(0.f);
     arc_meter.setMaxRange(100.f);
     auto arc_data1 = arc_meter.addData();

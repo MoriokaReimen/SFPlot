@@ -2,6 +2,7 @@
 #include <cmath>
 #include <sstream>
 #include <iomanip>
+#include "SFPlot/PlotConfig.hpp"
 
 namespace sf
 {
@@ -123,7 +124,7 @@ void CartesianAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states
 }
 
 CartesianAxes::CartesianAxes()
-    : x_range_(), y_range_(), font_()
+    : x_range_(), y_range_(), font_(plot_config.font)
 {
 
 }

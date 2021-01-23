@@ -2,6 +2,7 @@
 #include <cmath>
 #include <limits>
 #include <algorithm>
+#include "SFPlot/PlotConfig.hpp"
 
 namespace sf
 {
@@ -37,7 +38,7 @@ float RaderChart::getMaxValue() const
 }
 
 RaderChart::RaderChart()
-    : font_(), data_set_(), axes_()
+    : font_(plot_config.font), data_set_(), axes_()
 {
 }
 

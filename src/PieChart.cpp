@@ -1,5 +1,6 @@
 #include "SFPlot/PieChart.hpp"
 #include "SFPlot/FanShape.hpp"
+#include "SFPlot/PlotConfig.hpp"
 
 namespace sf
 {
@@ -32,9 +33,10 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 }
 
 PieChart::PieChart()
-    : data_set_(), font_()
+    : data_set_(), font_(plot_config.font)
 {
 }
+
 PieChart::~PieChart()
 {
 }

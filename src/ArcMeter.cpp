@@ -1,6 +1,7 @@
 #include "SFPlot/ArcMeter.hpp"
 #include <sstream>
 #include "SFPlot/FanShape.hpp"
+#include "SFPlot/PlotConfig.hpp"
 
 static constexpr float ARC_MAX_ANGLE = 360.f;
 namespace sf
@@ -52,7 +53,7 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 ArcMeter::ArcMeter(const float &min_range, const float& max_range)
-    : font_(), data_set_(), range_(0.f, 100.f)
+    : font_(plot_config.font), data_set_(), range_(0.f, 100.f)
 {
 }
 
