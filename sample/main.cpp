@@ -52,6 +52,12 @@ int main()
     rader_chart.move(1000.f, 400.f);
     rader_chart.set_font(font);
 
+    sf::BarMeter bar_meter;
+    bar_meter.set_font(font);
+    bar_meter.set_min_range(0.f);
+    bar_meter.set_max_range(100.f);
+    bar_meter.set_value(45);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -67,6 +73,7 @@ int main()
         window.draw(chart);
         window.draw(pie);
         window.draw(rader_chart);
+        window.draw(bar_meter);
         window.display();
     }
 
