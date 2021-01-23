@@ -4,3 +4,4 @@
 #include "RaderChart.hpp"
 #include "PieChart.hpp"
 #include "BarMeter.hpp"
+#include "ArcMeter.hpp"

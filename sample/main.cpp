@@ -58,6 +58,15 @@ int main()
     bar_meter.set_max_range(100.f);
     bar_meter.set_value(45);
 
+    sf::ArcMeter arc_meter;
+    arc_meter.set_font(font);
+    arc_meter.set_min_range(0.f);
+    arc_meter.set_max_range(100.f);
+    arc_meter.set_value(70);
+    arc_meter.setScale(2.f, 2.f);
+
+    arc_meter.setPosition(600, 600);
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -74,6 +83,7 @@ int main()
         window.draw(pie);
         window.draw(rader_chart);
         window.draw(bar_meter);
+        window.draw(arc_meter);
         window.display();
     }
 

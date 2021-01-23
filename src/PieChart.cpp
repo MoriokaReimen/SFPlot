@@ -8,8 +8,7 @@ float PieChart::get_total() const
 {
     float total = 0.f;
 
-    for(const auto& data : data_set_)
-    {
+    for(const auto& data : data_set_) {
         total += data->value;
     }
 
