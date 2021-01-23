@@ -41,24 +41,24 @@ BarMeter::~BarMeter()
 }
 
 /* setter functions */
-void BarMeter::set_font(const sf::Font &font)
+void BarMeter::setFont(const sf::Font &font)
 {
     font_ = font;
 }
 
-void BarMeter::set_value(const float &value)
+void BarMeter::setValue(const float &value)
 {
     value_ = value;
 }
 
-void BarMeter::set_max_range(const float &max_range)
+void BarMeter::setMaxRange(const float &max_range)
 {
     range_.second = max_range;
     if (range_.first > range_.second)
         std::swap(range_.first, range_.second);
 }
 
-void BarMeter::set_min_range(const float &min_range)
+void BarMeter::setMinRange(const float &min_range)
 {
     range_.first = min_range;
     if (range_.first > range_.second)
@@ -66,7 +66,7 @@ void BarMeter::set_min_range(const float &min_range)
 }
 
 /* getter functions */
-sf::Font BarMeter::get_font() const
+sf::Font BarMeter::getFont() const
 {
     return font_;
 }
@@ -80,11 +80,11 @@ std::pair<float, float> BarMeter::get_range() const
 {
     return range_;
 }
-float BarMeter::get_max_range() const
+float BarMeter::getMaxRange() const
 {
     return range_.second;
 }
-float BarMeter::get_min_range() const
+float BarMeter::getMinRange() const
 {
     return range_.first;
 }

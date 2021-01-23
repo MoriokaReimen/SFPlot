@@ -11,10 +11,10 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
     for (const auto& elem : data_set_) {
         switch (elem->type) {
         case CartesianData::PLOT_TYPE::POINT:
-            draw_point(*elem, target, states, axes_.get_x_range(), axes_.get_y_range());
+            drawPoint(*elem, target, states, axes_.getRangeX(), axes_.getRangeY());
             break;
         case CartesianData::PLOT_TYPE::LINE:
-            draw_line(*elem, target, states, axes_.get_x_range(), axes_.get_y_range());
+            drawLine(*elem, target, states, axes_.getRangeX(), axes_.getRangeY());
             break;
         default:
             break;
@@ -22,7 +22,7 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
     }
 }
 
-void CartesianChart::draw_point(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
+void CartesianChart::drawPoint(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
     for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++) {
@@ -39,7 +39,7 @@ void CartesianChart::draw_point(const CartesianData& elem, sf::RenderTarget& tar
 
 }
 
-void CartesianChart::draw_line(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
+void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
     for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++) {
@@ -73,28 +73,28 @@ CartesianChart::~CartesianChart()
 }
 
 /* setter functions */
-std::shared_ptr<CartesianData> CartesianChart::add_data()
+std::shared_ptr<CartesianData> CartesianChart::addData()
 {
     auto data = std::make_shared<CartesianData>();
     data_set_.push_back(data);
-    auto_range();
+    autoRange();
 
     return data;
 }
 
-void CartesianChart::add_data(std::shared_ptr<CartesianData> data)
+void CartesianChart::addData(std::shared_ptr<CartesianData> data)
 {
     data_set_.push_back(data);
-    auto_range();
+    autoRange();
 }
 
-void CartesianChart::set_font(const sf::Font& font)
+void CartesianChart::setFont(const sf::Font& font)
 {
     font_ = font;
-    axes_.set_font(font_);
+    axes_.setFont(font_);
 }
 
-void CartesianChart::auto_range()
+void CartesianChart::autoRange()
 {
     float x_min = std::numeric_limits<float>::max();
     float x_max = std::numeric_limits<float>::lowest();
@@ -102,20 +102,20 @@ void CartesianChart::auto_range()
     float y_max = std::numeric_limits<float>::lowest();
 
     for (const auto& elem : data_set_) {
-        auto x_range = elem->get_x_range();
+        auto x_range = elem->getRangeX();
         x_min = std::min(x_range.first, x_min);
         x_max = std::max(x_range.second, x_max);
 
-        auto y_range = elem->get_y_range();
+        auto y_range = elem->getRangeY();
         y_min = std::min(y_range.first, y_min);
         y_max = std::max(y_range.second, y_max);
     }
 
-    set_x_range(x_min, x_max);
-    set_y_range(y_min, y_max);
+    setRangeX(x_min, x_max);
+    setRangeY(y_min, y_max);
 }
 
-void CartesianChart::set_x_range(const float& min, const float& max)
+void CartesianChart::setRangeX(const float& min, const float& max)
 {
     std::pair<float, float> x_range;
     if (min > max) {
@@ -124,10 +124,10 @@ void CartesianChart::set_x_range(const float& min, const float& max)
         x_range = std::pair<float, float>(min, max);
     }
 
-    axes_.set_x_range(x_range);
+    axes_.setRangeX(x_range);
 }
 
-void CartesianChart::set_y_range(const float& min, const float& max)
+void CartesianChart::setRangeY(const float& min, const float& max)
 {
     std::pair<float, float> y_range;
     if (min > max) {
@@ -136,26 +136,26 @@ void CartesianChart::set_y_range(const float& min, const float& max)
         y_range = std::pair<float, float>(min, max);
     }
 
-    axes_.set_y_range(y_range);
+    axes_.setRangeY(y_range);
 }
 
 /* getter functions */
-sf::Font CartesianChart::get_font() const
+sf::Font CartesianChart::getFont() const
 {
     return font_;
 }
 
-std::pair<float, float> CartesianChart::get_x_range() const
+std::pair<float, float> CartesianChart::getRangeX() const
 {
-    return axes_.get_x_range();
+    return axes_.getRangeX();
 }
 
-std::pair<float, float> CartesianChart::get_y_range() const
+std::pair<float, float> CartesianChart::getRangeY() const
 {
-    return axes_.get_y_range();
+    return axes_.getRangeY();
 }
 
-std::shared_ptr<CartesianData> CartesianChart::get_data(const std::size_t& index)
+std::shared_ptr<CartesianData> CartesianChart::getData(const std::size_t& index)
 {
     return data_set_[index];
 }

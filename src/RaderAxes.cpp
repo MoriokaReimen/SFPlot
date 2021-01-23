@@ -10,13 +10,13 @@ const float RaderAxes::RADIUS(250.f);
 void RaderAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
-    draw_axes(target, states);
+    drawAxes(target, states);
     if(!font_.getInfo().family.empty()) {
-        draw_legend(target, states);
+        drawLegend(target, states);
     }
 }
 
-void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) const
+void RaderAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw outer circle*/
     {
@@ -61,7 +61,7 @@ void RaderAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) con
     }
 }
 
-void RaderAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates states) const
+void RaderAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw angle legend */
     constexpr float angle_step = 45.f;
@@ -113,23 +113,23 @@ RaderAxes::~RaderAxes()
 }
 
 /* setter functions ***************************************************/
-void RaderAxes::set_max_value(const float& max_value)
+void RaderAxes::setMaxValue(const float& max_value)
 {
     max_value_ = max_value;
 }
 
-void RaderAxes::set_font(const sf::Font& font)
+void RaderAxes::setFont(const sf::Font& font)
 {
     font_ = font;
 }
 
 /* getter functions ***************************************************/
-float RaderAxes::get_max_value() const
+float RaderAxes::getMaxValue() const
 {
     return max_value_;
 }
 
-sf::Font RaderAxes::get_font() const
+sf::Font RaderAxes::getFont() const
 {
     return font_;
 }

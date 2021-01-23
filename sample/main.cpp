@@ -21,19 +21,19 @@ int main()
     }
 
     sf::CartesianChart chart;
-    auto data1 = chart.add_data();
+    auto data1 = chart.addData();
     data1->data = {{1.0, 2.0}, {2.0, 3.0}, {3.0, 2.0}, {4.0, -1.0}};
     data1->type = sf::CartesianData::PLOT_TYPE::POINT;
-    auto data2 = chart.add_data();
+    auto data2 = chart.addData();
     data2->data = {{1.0, 4.0}, {1.0, 3.0}, {3.0, 5.0}, {4.0, 5.0}};
     data2->type = sf::CartesianData::PLOT_TYPE::LINE;
-    chart.set_font(font);
+    chart.setFont(font);
     chart.setPosition(50, 50);
-    chart.auto_range();
+    chart.autoRange();
 
     sf::PieChart pie;
-    auto pie_data1 = pie.add_data();
-    auto pie_data2 = pie.add_data();
+    auto pie_data1 = pie.addData();
+    auto pie_data2 = pie.addData();
     pie_data1->color = sf::Color::Blue;
     pie_data1->value = 500.f;
     pie_data1->title = "fuga";
@@ -45,24 +45,24 @@ int main()
     pie.setScale(0.5f, 0.5f);
 
     sf::RaderChart rader_chart;
-    auto rader_data1 = rader_chart.add_data();
+    auto rader_data1 = rader_chart.addData();
     rader_data1->data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}, {90.f, 120.f}};
     rader_data1->color = sf::Color::Cyan;
-    rader_chart.auto_range();
+    rader_chart.autoRange();
     rader_chart.move(1000.f, 400.f);
-    rader_chart.set_font(font);
+    rader_chart.setFont(font);
 
     sf::BarMeter bar_meter;
-    bar_meter.set_font(font);
-    bar_meter.set_min_range(0.f);
-    bar_meter.set_max_range(100.f);
-    bar_meter.set_value(45);
+    bar_meter.setFont(font);
+    bar_meter.setMinRange(0.f);
+    bar_meter.setMaxRange(100.f);
+    bar_meter.setValue(45);
 
     sf::ArcMeter arc_meter;
-    arc_meter.set_font(font);
-    arc_meter.set_min_range(0.f);
-    arc_meter.set_max_range(100.f);
-    arc_meter.set_value(70);
+    arc_meter.setFont(font);
+    arc_meter.setMinRange(0.f);
+    arc_meter.setMaxRange(100.f);
+    arc_meter.setValue(70);
     arc_meter.setScale(2.f, 2.f);
 
     arc_meter.setPosition(600, 600);

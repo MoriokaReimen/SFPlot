@@ -49,24 +49,24 @@ ArcMeter::~ArcMeter()
 }
 
 /* setter functions */
-void ArcMeter::set_font(const sf::Font &font)
+void ArcMeter::setFont(const sf::Font &font)
 {
     font_ = font;
 }
 
-void ArcMeter::set_value(const float &value)
+void ArcMeter::setValue(const float &value)
 {
     value_ = value;
 }
 
-void ArcMeter::set_max_range(const float &max_range)
+void ArcMeter::setMaxRange(const float &max_range)
 {
     range_.second = max_range;
     if (range_.first > range_.second)
         std::swap(range_.first, range_.second);
 }
 
-void ArcMeter::set_min_range(const float &min_range)
+void ArcMeter::setMinRange(const float &min_range)
 {
     range_.first = min_range;
     if (range_.first > range_.second)
@@ -74,25 +74,25 @@ void ArcMeter::set_min_range(const float &min_range)
 }
 
 /* getter functions */
-sf::Font ArcMeter::get_font() const
+sf::Font ArcMeter::getFont() const
 {
     return font_;
 }
 
-float ArcMeter::get_value() const
+float ArcMeter::getValue() const
 {
     return value_;
 }
 
-std::pair<float, float> ArcMeter::get_range() const
+std::pair<float, float> ArcMeter::getRange() const
 {
     return range_;
 }
-float ArcMeter::get_max_range() const
+float ArcMeter::getMaxRange() const
 {
     return range_.second;
 }
-float ArcMeter::get_min_range() const
+float ArcMeter::getMinRange() const
 {
     return range_.first;
 }

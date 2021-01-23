@@ -11,8 +11,8 @@ class CartesianAxes : virtual public sf::Transformable, virtual public sf::Drawa
     sf::Font font_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void draw_axes(sf::RenderTarget& target, sf::RenderStates states) const;
-    void draw_legend(sf::RenderTarget& target, sf::RenderStates states) const;
+    void drawAxes(sf::RenderTarget& target, sf::RenderStates states) const;
+    void drawLegend(sf::RenderTarget& target, sf::RenderStates states) const;
 
 public:
     static const sf::Vector2f DIMENSION;
@@ -22,13 +22,13 @@ public:
     virtual ~CartesianAxes();
 
     /* setter functions */
-    void set_x_range(const std::pair<float, float>& x_range);
-    void set_y_range(const std::pair<float, float>& y_range);
-    void set_font(const sf::Font& font);
+    void setRangeX(const std::pair<float, float>& x_range);
+    void setRangeY(const std::pair<float, float>& y_range);
+    void setFont(const sf::Font& font);
 
     /* getter functions */
-    std::pair<float, float> get_x_range() const;
-    std::pair<float, float> get_y_range() const;
-    sf::Font get_font() const;
+    std::pair<float, float> getRangeX() const;
+    std::pair<float, float> getRangeY() const;
+    sf::Font getFont() const;
 };
 };

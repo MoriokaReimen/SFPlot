@@ -19,25 +19,25 @@ class CartesianChart : virtual public sf::Drawable, virtual public sf::Transform
     CartesianAxes axes_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void draw_point(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states,
+    void drawPoint(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states,
                     const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
-    void draw_line(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
+    void drawLine(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
 public:
     CartesianChart();
     virtual ~CartesianChart();
 
     /* setter functions */
-    std::shared_ptr<CartesianData> add_data();
-    void add_data(std::shared_ptr<CartesianData> data);
-    void set_font(const sf::Font& font);
-    void auto_range();
-    void set_x_range(const float& min, const float& max);
-    void set_y_range(const float& min, const float& max);
+    std::shared_ptr<CartesianData> addData();
+    void addData(std::shared_ptr<CartesianData> data);
+    void setFont(const sf::Font& font);
+    void autoRange();
+    void setRangeX(const float& min, const float& max);
+    void setRangeY(const float& min, const float& max);
 
     /* getter functions */
-    sf::Font get_font() const;
-    std::pair<float, float> get_x_range() const;
-    std::pair<float, float> get_y_range() const;
-    std::shared_ptr<CartesianData> get_data(const std::size_t& index);
+    sf::Font getFont() const;
+    std::pair<float, float> getRangeX() const;
+    std::pair<float, float> getRangeY() const;
+    std::shared_ptr<CartesianData> getData(const std::size_t& index);
 };
 };

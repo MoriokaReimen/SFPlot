@@ -13,7 +13,7 @@ RaderData::~RaderData()
 {
 }
 
-float RaderData::get_max_value() const
+float RaderData::getMaxValue() const
 {
     auto max = std::numeric_limits<float>::lowest();
 

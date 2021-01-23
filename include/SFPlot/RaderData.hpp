@@ -16,6 +16,6 @@ struct RaderData {
 
     RaderData();
     virtual ~RaderData();
-    float get_max_value() const;
+    float getMaxValue() const;
 };
 };

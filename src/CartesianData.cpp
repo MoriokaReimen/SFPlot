@@ -11,7 +11,7 @@ CartesianData::~CartesianData()
 {
 }
 
-std::pair<float, float> CartesianData::get_x_range() const
+std::pair<float, float> CartesianData::getRangeX() const
 {
     /* Extract Data*/
     auto min_x = std::numeric_limits<float>::infinity();
@@ -25,7 +25,7 @@ std::pair<float, float> CartesianData::get_x_range() const
     return std::pair<float, float>(min_x, max_x);
 }
 
-std::pair<float, float> CartesianData::get_y_range() const
+std::pair<float, float> CartesianData::getRangeY() const
 {
     /* Extract Data*/
     auto min_y = std::numeric_limits<float>::infinity();

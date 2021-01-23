@@ -4,7 +4,7 @@
 namespace sf
 {
 static constexpr float RADIUS(250.f);
-float PieChart::get_total() const
+float PieChart::getTotal() const
 {
     float total = 0.f;
 
@@ -19,7 +19,7 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
 
-    const float total = get_total();
+    const float total = getTotal();
     float start_angle = 0U;
 
     for(auto const& data : data_set_) {
@@ -45,7 +45,7 @@ void PieChart::set_font(const sf::Font& font)
     font_ = font;
 }
 
-std::shared_ptr<PieData> PieChart::add_data()
+std::shared_ptr<PieData> PieChart::addData()
 {
     auto data = std::make_shared<PieData>();
     data_set_.push_back(data);
@@ -53,18 +53,18 @@ std::shared_ptr<PieData> PieChart::add_data()
     return data;
 }
 
-void PieChart::add_data(std::shared_ptr<PieData> data)
+void PieChart::addData(std::shared_ptr<PieData> data)
 {
     data_set_.push_back(data);
 }
 
 /* getter function */
-sf::Font PieChart::get_font() const
+sf::Font PieChart::getFont() const
 {
     return font_;
 }
 
-std::shared_ptr<PieData> PieChart::get_data(const std::size_t& index)
+std::shared_ptr<PieData> PieChart::getData(const std::size_t& index)
 {
     return data_set_[index];
 }

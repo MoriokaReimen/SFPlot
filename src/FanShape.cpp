@@ -18,13 +18,13 @@ FanShape::~FanShape()
 }
 
 /* setter function */
-void FanShape::set_radius(const float& radius)
+void FanShape::setRadius(const float& radius)
 {
     radius_ = radius;
     update();
 }
 
-void FanShape::set_start_angle(const float& start_angle)
+void FanShape::setStartAngle(const float& start_angle)
 {
     start_angle_ = start_angle;
     if(end_angle_ < start_angle_) {
@@ -33,7 +33,7 @@ void FanShape::set_start_angle(const float& start_angle)
     update();
 }
 
-void FanShape::set_end_angle(const float& end_angle)
+void FanShape::setEndAngle(const float& end_angle)
 {
     end_angle_ = end_angle;
     if(end_angle_ < start_angle_) {
@@ -43,17 +43,17 @@ void FanShape::set_end_angle(const float& end_angle)
 }
 
 /* getter function */
-float FanShape::get_radius() const
+float FanShape::getRadius() const
 {
     return radius_;
 }
 
-float FanShape::get_start_angle() const
+float FanShape::getStartAngle() const
 {
     return start_angle_;
 }
 
-float FanShape::get_end_angle() const
+float FanShape::getEndAngle() const
 {
     return end_angle_;
 }

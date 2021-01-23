@@ -14,14 +14,14 @@ public:
     virtual ~FanShape() override;
 
     /* setter function */
-    void set_radius(const float& radius);
-    void set_start_angle(const float& start_angle);
-    void set_end_angle(const float& end_angle);
+    void setRadius(const float& radius);
+    void setStartAngle(const float& start_angle);
+    void setEndAngle(const float& end_angle);
 
     /* getter function */
-    float get_radius() const;
-    float get_start_angle() const;
-    float get_end_angle() const;
+    float getRadius() const;
+    float getStartAngle() const;
+    float getEndAngle() const;
     virtual std::size_t getPointCount() const override;
     virtual sf::Vector2f getPoint(std::size_t index) const override;
 };

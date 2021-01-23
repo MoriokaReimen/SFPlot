@@ -17,16 +17,16 @@ public:
     virtual ~ArcMeter();
 
     /* setter functions */
-    void set_font(const sf::Font& font);
-    void set_value(const float& value);
-    void set_max_range(const float& max_range);
-    void set_min_range(const float& min_range);
+    void setFont(const sf::Font& font);
+    void setValue(const float& value);
+    void setMaxRange(const float& max_range);
+    void setMinRange(const float& min_range);
 
     /* getter functions */
-    sf::Font get_font() const;
-    float get_value() const;
-    std::pair<float, float> get_range() const;
-    float get_max_range() const;
-    float get_min_range() const;
+    sf::Font getFont() const;
+    float getValue() const;
+    std::pair<float, float> getRange() const;
+    float getMaxRange() const;
+    float getMinRange() const;
 };
 };

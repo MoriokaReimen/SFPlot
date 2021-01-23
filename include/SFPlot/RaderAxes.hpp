@@ -9,8 +9,8 @@ class RaderAxes : virtual public sf::Transformable, virtual public sf::Drawable
     sf::Font font_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void draw_axes(sf::RenderTarget& target, sf::RenderStates states) const;
-    void draw_legend(sf::RenderTarget& target, sf::RenderStates states) const;
+    void drawAxes(sf::RenderTarget& target, sf::RenderStates states) const;
+    void drawLegend(sf::RenderTarget& target, sf::RenderStates states) const;
 public:
     static const float RADIUS;
 
@@ -19,11 +19,11 @@ public:
     RaderAxes& operator=(const RaderAxes& other) = default;
 
     /* setter functions */
-    void set_max_value(const float& max_value);
-    void set_font(const sf::Font& font);
+    void setMaxValue(const float& max_value);
+    void setFont(const sf::Font& font);
 
     /* getter functions */
-    float get_max_value() const;
-    sf::Font get_font() const;
+    float getMaxValue() const;
+    sf::Font getFont() const;
 };
 };

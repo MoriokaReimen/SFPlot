@@ -12,11 +12,11 @@ void RaderChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(axes_, states);
 
     for(const auto& data : data_set_) {
-        draw_point(target, states, *data, axes_.get_max_value());
+        drawPoint(target, states, *data, axes_.getMaxValue());
     }
 }
 
-void RaderChart::draw_point(sf::RenderTarget& target, sf::RenderStates states, const RaderData& data, const float& max_value) const
+void RaderChart::drawPoint(sf::RenderTarget& target, sf::RenderStates states, const RaderData& data, const float& max_value) const
 {
     constexpr float POINT_RADIUS(5.f);
 
@@ -31,9 +31,9 @@ void RaderChart::draw_point(sf::RenderTarget& target, sf::RenderStates states, c
     }
 }
 
-float RaderChart::get_max_value() const
+float RaderChart::getMaxValue() const
 {
-    return axes_.get_max_value();
+    return axes_.getMaxValue();
 }
 
 RaderChart::RaderChart()
@@ -47,59 +47,59 @@ RaderChart::~RaderChart()
 
 /* setter functions */
 
-std::shared_ptr<RaderData> RaderChart::add_data()
+std::shared_ptr<RaderData> RaderChart::addData()
 {
     auto data = std::make_shared<RaderData>();
     data_set_.push_back(data);
-    auto_range();
+    autoRange();
 
     return data;
 }
 
-void RaderChart::add_data(std::shared_ptr<RaderData> data)
+void RaderChart::addData(std::shared_ptr<RaderData> data)
 {
     data_set_.push_back(data);
-    auto_range();
+    autoRange();
 }
 
-void RaderChart::set_font(const sf::Font& font)
+void RaderChart::setFont(const sf::Font& font)
 {
     font_ = font;
-    axes_.set_font(font_);
+    axes_.setFont(font_);
 }
 
-void RaderChart::set_axes(const RaderAxes& axes)
+void RaderChart::setAxes(const RaderAxes& axes)
 {
     axes_ = axes;
 }
 
-void RaderChart::auto_range()
+void RaderChart::autoRange()
 {
     auto max = std::numeric_limits<float>::lowest();
     for(const auto& elem : data_set_) {
-        max = std::max(elem->get_max_value(), max);
+        max = std::max(elem->getMaxValue(), max);
     }
 
-    set_max_value(max);
+    setMaxValue(max);
 }
 
-void RaderChart::set_max_value(const float& max)
+void RaderChart::setMaxValue(const float& max)
 {
-    axes_.set_max_value(max);
+    axes_.setMaxValue(max);
 }
 
 /* getter functions */
-sf::Font RaderChart::get_font() const
+sf::Font RaderChart::getFont() const
 {
     return font_;
 }
 
-RaderAxes RaderChart::get_axes() const
+RaderAxes RaderChart::getAxes() const
 {
     return axes_;
 }
 
-std::shared_ptr<RaderData> RaderChart::get_data(const std::size_t& index)
+std::shared_ptr<RaderData> RaderChart::getData(const std::size_t& index)
 {
     return data_set_[index];
 }

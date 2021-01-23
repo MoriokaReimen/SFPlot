@@ -11,14 +11,14 @@ const sf::Vector2f CartesianAxes::MARGIN{40.f, 20.f};
 void CartesianAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
-    draw_axes(target, states);
+    drawAxes(target, states);
     if (!font_.getInfo().family.empty()) {
-        draw_legend(target, states);
+        drawLegend(target, states);
     }
 
 }
 
-void CartesianAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states) const
+void CartesianAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw X Axis */
     {
@@ -78,7 +78,7 @@ void CartesianAxes::draw_axes(sf::RenderTarget& target, sf::RenderStates states)
 
 }
 
-void CartesianAxes::draw_legend(sf::RenderTarget& target, sf::RenderStates states) const
+void CartesianAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw x legend */
     const float x_step = (x_range_.second - x_range_.first) / 9;
@@ -133,33 +133,33 @@ CartesianAxes::~CartesianAxes()
 }
 
 /* setter functions **************************************************/
-void CartesianAxes::set_x_range(const std::pair<float, float>& x_range)
+void CartesianAxes::setRangeX(const std::pair<float, float>& x_range)
 {
     x_range_ = x_range;
 }
 
-void CartesianAxes::set_y_range(const std::pair<float, float>& y_range)
+void CartesianAxes::setRangeY(const std::pair<float, float>& y_range)
 {
     y_range_ = y_range;
 }
 
-void CartesianAxes::set_font(const sf::Font& font)
+void CartesianAxes::setFont(const sf::Font& font)
 {
     font_ = font;
 }
 
 /* getter functions **************************************************/
-std::pair<float, float> CartesianAxes::get_x_range() const
+std::pair<float, float> CartesianAxes::getRangeX() const
 {
     return x_range_;
 }
 
-std::pair<float, float> CartesianAxes::get_y_range() const
+std::pair<float, float> CartesianAxes::getRangeY() const
 {
     return y_range_;
 }
 
-sf::Font CartesianAxes::get_font() const
+sf::Font CartesianAxes::getFont() const
 {
     return font_;
 }
