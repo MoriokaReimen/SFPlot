@@ -20,7 +20,7 @@ class CartesianChart : virtual public sf::Drawable, virtual public sf::Transform
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
     void drawPoint(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states,
-                    const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
+                   const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
     void drawLine(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const;
 public:
     CartesianChart();

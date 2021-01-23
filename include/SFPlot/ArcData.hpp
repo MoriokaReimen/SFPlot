@@ -3,9 +3,8 @@
 
 namespace sf
 {
-    struct ArcData
-    {
-        sf::Color color;
-        float value;
-    };
+struct ArcData {
+    sf::Color color;
+    float value;
+};
 };

@@ -55,7 +55,14 @@ int main()
     bar_meter.setFont(font);
     bar_meter.setMinRange(0.f);
     bar_meter.setMaxRange(100.f);
-    bar_meter.setValue(45);
+    auto bar_data1 = bar_meter.addData();
+    bar_data1->color = sf::Color::Green;
+    bar_data1->value = 50.f;
+    auto bar_data2 = bar_meter.addData();
+    bar_data2->color = sf::Color::Cyan;
+    bar_data2->value = 70.f;
+    bar_meter.setPosition(100, 800);
+
 
     sf::ArcMeter arc_meter;
     arc_meter.setFont(font);
@@ -70,9 +77,7 @@ int main()
     auto arc_data3 = arc_meter.addData();
     arc_data3->color = sf::Color::Blue;
     arc_data3->value = 80;
-    arc_meter.setScale(2.f, 2.f);
-
-    arc_meter.setPosition(600, 600);
+    arc_meter.setPosition(600, 800);
 
     while (window.isOpen())
     {

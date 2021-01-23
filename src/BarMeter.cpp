@@ -7,32 +7,38 @@ namespace sf
 void BarMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
-    auto width = value_ / (range_.second - range_.first) * BAR_MAX_WIDTH;
-    width = std::min(width, BAR_MAX_WIDTH);
-    width = std::max(width, 0.f);
+    float offset_y = 0.f;
+    for (auto data : data_set_) {
+        auto width = data->value / (range_.second - range_.first) * BAR_MAX_WIDTH;
+        width = std::min(width, BAR_MAX_WIDTH);
+        width = std::max(width, 0.f);
 
-    sf::RectangleShape meter(sf::Vector2f(width, 30));
-    meter.setFillColor(sf::Color::Green);
-    target.draw(meter, states);
-    if (!font_.getInfo().family.empty()) {
-        std::stringstream ss;
-        ss.precision(3);
-        ss << std::fixed;
-        ss.width(5);
-        ss << value_;
-        sf::Text legend;
-        legend.setString(ss.str());
-        legend.setFont(font_);
-        legend.setFillColor(sf::Color::White);
-        legend.setCharacterSize(15);
-        legend.setOrigin(0, legend.getGlobalBounds().height / 2);
-        legend.setPosition(120.f, 15.f);
-        target.draw(legend, states);
+        sf::RectangleShape meter(sf::Vector2f(width, 30));
+        meter.setFillColor(data->color);
+        meter.setPosition(0.f, offset_y);
+        target.draw(meter, states);
+        if (!font_.getInfo().family.empty()) {
+            std::stringstream ss;
+            ss.precision(3);
+            ss << std::fixed;
+            ss.width(5);
+            ss << data->value;
+            sf::Text legend;
+            legend.setString(ss.str());
+            legend.setFont(font_);
+            legend.setFillColor(sf::Color::White);
+            legend.setCharacterSize(15);
+            legend.setOrigin(0, legend.getGlobalBounds().height / 2);
+            legend.setPosition(120.f, offset_y + 10.f);
+            target.draw(legend, states);
+        }
+
+        offset_y += 30.f;
     }
 }
 
-BarMeter::BarMeter(const float &min_range, const float& max_range)
-    : font_(), value_(0.f), range_(0.f, 100.f)
+BarMeter::BarMeter(const float &min_range, const float &max_range)
+    : font_(), data_set_(), range_(0.f, 100.f)
 {
 }
 
@@ -45,10 +51,16 @@ void BarMeter::setFont(const sf::Font &font)
 {
     font_ = font;
 }
-
-void BarMeter::setValue(const float &value)
+std::shared_ptr<BarData> BarMeter::addData()
 {
-    value_ = value;
+    auto data = std::make_shared<BarData>();
+    data_set_.push_back(data);
+    return data;
+}
+
+void BarMeter::addData(std::shared_ptr<BarData> data)
+{
+    data_set_.push_back(data);
 }
 
 void BarMeter::setMaxRange(const float &max_range)
@@ -71,12 +83,12 @@ sf::Font BarMeter::getFont() const
     return font_;
 }
 
-float BarMeter::get_value() const
+std::shared_ptr<BarData> BarMeter::getData(const std::size_t &index)
 {
-    return value_;
+    return data_set_[index];
 }
 
-std::pair<float, float> BarMeter::get_range() const
+std::pair<float, float> BarMeter::getRange() const
 {
     return range_;
 }

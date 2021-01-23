@@ -10,8 +10,7 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
     states.transform *= getTransform();
 
     float radius = 30.f + data_set_.size() * 20.f;
-    for(const auto& data : data_set_)
-    {
+    for(const auto& data : data_set_) {
         sf::CircleShape circ(radius);
         circ.setOrigin(radius, radius);
         circ.setPosition(50.f, 50.f);

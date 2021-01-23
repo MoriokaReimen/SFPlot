@@ -1,6 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include <string>
+#include "SFPlot/BarData.hpp"
+#include <memory>
+#include <vector>
 #include <utility>
 
 namespace sf
@@ -8,7 +10,7 @@ namespace sf
 class BarMeter : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
-    float value_;
+    std::vector<std::shared_ptr<BarData>> data_set_;
     std::pair<float, float> range_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -18,14 +20,15 @@ public:
 
     /* setter functions */
     void setFont(const sf::Font& font);
-    void setValue(const float& value);
+    std::shared_ptr<BarData> addData();
+    void addData(std::shared_ptr<BarData> data);
     void setMaxRange(const float& max_range);
     void setMinRange(const float& min_range);
 
     /* getter functions */
     sf::Font getFont() const;
-    float get_value() const;
-    std::pair<float, float> get_range() const;
+    std::shared_ptr<BarData> getData(const std::size_t& index);
+    std::pair<float, float> getRange() const;
     float getMaxRange() const;
     float getMinRange() const;
 };
