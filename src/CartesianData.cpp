@@ -3,7 +3,7 @@
 namespace sf
 {
 CartesianData::CartesianData()
-    : name(), data(), color(sf::Color::Green), type(CartesianData::PLOT_TYPE::LINE)
+    : data(), color(sf::Color::Green), type(CartesianData::PLOT_TYPE::LINE)
 {
 }
 

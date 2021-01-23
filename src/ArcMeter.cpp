@@ -8,13 +8,26 @@ namespace sf
 void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
-    auto angle = value_ / (range_.second - range_.first) * ARC_MAX_ANGLE;
-    angle = std::min(angle, ARC_MAX_ANGLE);
-    angle = std::max(angle, 0.f);
 
-    sf::FanShape meter(50.f, 0.f, angle);
-    meter.setFillColor(sf::Color::Green);
-    target.draw(meter, states);
+    float radius = 30.f + data_set_.size() * 20.f;
+    for(const auto& data : data_set_)
+    {
+        sf::CircleShape circ(radius);
+        circ.setOrigin(radius, radius);
+        circ.setPosition(50.f, 50.f);
+        circ.setFillColor(sf::Color::Black);
+        target.draw(circ, states);
+
+        auto angle = data->value / (range_.second - range_.first) * ARC_MAX_ANGLE;
+        angle = std::min(angle, ARC_MAX_ANGLE);
+        angle = std::max(angle, 0.f);
+        sf::FanShape meter(radius, 0.f, angle);
+        meter.setOrigin(radius, radius);
+        meter.setPosition(50.f, 50.f);
+        meter.setFillColor(data->color);
+        target.draw(meter, states);
+        radius -= 20;
+    }
 
     sf::CircleShape circ(30.f);
     circ.setOrigin(30.f, 30.f);
@@ -27,7 +40,7 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
         ss.precision(2);
         ss << std::fixed;
         ss.width(5);
-        ss << value_;
+        ss << data_set_[0]->value;
         sf::Text legend;
         legend.setString(ss.str());
         legend.setFont(font_);
@@ -40,7 +53,7 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 ArcMeter::ArcMeter(const float &min_range, const float& max_range)
-    : font_(), value_(0.f), range_(0.f, 100.f)
+    : font_(), data_set_(), range_(0.f, 100.f)
 {
 }
 
@@ -52,11 +65,6 @@ ArcMeter::~ArcMeter()
 void ArcMeter::setFont(const sf::Font &font)
 {
     font_ = font;
-}
-
-void ArcMeter::setValue(const float &value)
-{
-    value_ = value;
 }
 
 void ArcMeter::setMaxRange(const float &max_range)
@@ -73,15 +81,23 @@ void ArcMeter::setMinRange(const float &min_range)
         std::swap(range_.first, range_.second);
 }
 
+std::shared_ptr<ArcData> ArcMeter::addData()
+{
+    auto data = std::make_shared<ArcData>();
+    data_set_.push_back(data);
+
+    return data;
+}
+
+void ArcMeter::addData(std::shared_ptr<ArcData> data)
+{
+    data_set_.push_back(data);
+}
+
 /* getter functions */
 sf::Font ArcMeter::getFont() const
 {
     return font_;
-}
-
-float ArcMeter::getValue() const
-{
-    return value_;
 }
 
 std::pair<float, float> ArcMeter::getRange() const
@@ -96,4 +112,10 @@ float ArcMeter::getMinRange() const
 {
     return range_.first;
 }
+
+std::shared_ptr<ArcData> ArcMeter::getData(const std::size_t& index)
+{
+    return data_set_[index];
+}
+
 }; // namespace sf

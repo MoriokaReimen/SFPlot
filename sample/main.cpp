@@ -36,10 +36,9 @@ int main()
     auto pie_data2 = pie.addData();
     pie_data1->color = sf::Color::Blue;
     pie_data1->value = 500.f;
-    pie_data1->title = "fuga";
     pie_data2->color = sf::Color::Red;
     pie_data2->value = 300.f;
-    pie_data2->title = "hoge";
+
 
     pie.move(1000.f, 0.f);
     pie.setScale(0.5f, 0.5f);
@@ -62,7 +61,15 @@ int main()
     arc_meter.setFont(font);
     arc_meter.setMinRange(0.f);
     arc_meter.setMaxRange(100.f);
-    arc_meter.setValue(70);
+    auto arc_data1 = arc_meter.addData();
+    arc_data1->color = sf::Color::Green;
+    arc_data1->value = 50;
+    auto arc_data2 = arc_meter.addData();
+    arc_data2->color = sf::Color::Red;
+    arc_data2->value = 70;
+    auto arc_data3 = arc_meter.addData();
+    arc_data3->color = sf::Color::Blue;
+    arc_data3->value = 80;
     arc_meter.setScale(2.f, 2.f);
 
     arc_meter.setPosition(600, 600);

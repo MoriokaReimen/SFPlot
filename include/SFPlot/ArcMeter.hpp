@@ -1,14 +1,16 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include "SFPlot/ArcData.hpp"
 #include <string>
 #include <utility>
+#include <memory>
 
 namespace sf
 {
 class ArcMeter : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
-    float value_;
+    std::vector<std::shared_ptr<ArcData>> data_set_;
     std::pair<float, float> range_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
@@ -18,9 +20,10 @@ public:
 
     /* setter functions */
     void setFont(const sf::Font& font);
-    void setValue(const float& value);
     void setMaxRange(const float& max_range);
     void setMinRange(const float& min_range);
+    std::shared_ptr<ArcData> addData();
+    void addData(std::shared_ptr<ArcData> data);
 
     /* getter functions */
     sf::Font getFont() const;
@@ -28,5 +31,6 @@ public:
     std::pair<float, float> getRange() const;
     float getMaxRange() const;
     float getMinRange() const;
+    std::shared_ptr<ArcData> getData(const std::size_t& index);
 };
 };

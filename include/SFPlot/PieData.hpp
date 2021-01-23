@@ -6,7 +6,6 @@
 namespace sf
 {
 struct PieData {
-    std::string title;
     float value;
     sf::Color color;
 };

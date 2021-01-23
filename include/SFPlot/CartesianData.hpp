@@ -10,7 +10,6 @@ struct CartesianData {
         POINT,
         LINE
     };
-    std::string name;
     std::vector<sf::Vector2f> data;
     sf::Color color;
     PLOT_TYPE type;
