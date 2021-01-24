@@ -14,7 +14,7 @@ Graph plotting library based on SFML multimedia library.
 SFPlot supports
 1. Cartesian Chart (2D X-Y Chart)
 2. Pie Chart
-3. Rader Chart
+3. Radar Chart
 4. Bar Chart
 5. Circle Bar Chart
 

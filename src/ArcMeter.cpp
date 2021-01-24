@@ -6,6 +6,14 @@
 static constexpr float ARC_MAX_ANGLE = 360.f;
 namespace sf
 {
+
+/**
+ * Drawing function derived from sf::Drawable
+ * 
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
 void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -52,11 +60,20 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
     }
 }
 
+/**
+ * Constructor for ArcMeter class
+ * @param min_range the minimal value of ArcMeter data
+ * @param max_range the max value of ArcMeter data
+*/
 ArcMeter::ArcMeter(const float &min_range, const float& max_range)
     : font_(plot_config.font), font_color_(plot_config.font_color), data_set_(), range_(0.f, 100.f)
 {
 }
 
+/**
+ * Destructor for ArcMeter class
+ * 
+*/
 ArcMeter::~ArcMeter()
 {
 }
@@ -123,6 +140,11 @@ float ArcMeter::getMinRange() const
     return range_.first;
 }
 
+/**
+ * get pointer to data to plot
+ * @param index index of data to get 
+ * 
+*/
 std::shared_ptr<ArcData> ArcMeter::getData(const std::size_t& index)
 {
     return data_set_[index];
