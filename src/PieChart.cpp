@@ -2,6 +2,8 @@
 #include "SFPlot/FanShape.hpp"
 #include "SFPlot/PlotConfig.hpp"
 
+#include <numeric>
+
 namespace sf
 {
 static constexpr float RADIUS(250.f);
@@ -11,11 +13,10 @@ static constexpr float RADIUS(250.f);
  */
 float PieChart::getTotal() const
 {
-    float total = 0.f;
+    float total = 
 
-    for(const auto& data : data_set_) {
-        total += data->value;
-    }
+    std::accumulate(data_set_.begin(), data_set_.end(), 0.f,
+                    [](const float& a, const std::shared_ptr<PieData>& b){return a + b->value;} );
 
     return total;
 }
