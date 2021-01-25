@@ -1,5 +1,6 @@
 #include "SFPlot/ArcMeter.hpp"
 #include <sstream>
+#include <numeric>
 #include "SFPlot/FanShape.hpp"
 #include "SFPlot/PlotConfig.hpp"
 
@@ -44,11 +45,14 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
     target.draw(circ, states);
 
     if (!font_.getInfo().family.empty()) {
+        const float average = std::accumulate(data_set_.begin(), data_set_.end(), 0.f,
+         [](const float& a, const std::shared_ptr<ArcData>& b){return a + b->value;})
+         / data_set_.size();
         std::stringstream ss;
         ss.precision(2);
         ss << std::fixed;
         ss.width(5);
-        ss << data_set_[0]->value;
+        ss << average;
         sf::Text legend;
         legend.setString(ss.str());
         legend.setFont(font_);
