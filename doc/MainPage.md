@@ -40,7 +40,7 @@ First of all you have to set up default configurations for SFPlot.
 Then declare chart
 
 ```
-    sf::CartesianChart chart; // Catesian X-Y Chart
+    sf::CartesianChart chart; // Cartesian X-Y Chart
 ```
 
 Needless to say, you have to add data set to each chart before drawing to show data.

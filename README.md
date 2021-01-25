@@ -29,7 +29,7 @@ make
 If you want to enable sample program add `-DENABLE_SAMPLE=ON` argument to `cmake` command.
 
 ```
-cmake -DENABLE_SMAPLE=ON .
+cmake -DENABLE_SAMPLE=ON .
 make
 ```
 
@@ -46,7 +46,7 @@ First of all you have to set up default configurations for SFPlot.
 Then declare chart
 
 ```c++
-    sf::CartesianChart chart; // Catesian X-Y Chart
+    sf::CartesianChart chart; // Cartesian X-Y Chart
 ```
 
 Needless to say, you have to add data set to each chart before drawing to show data.
