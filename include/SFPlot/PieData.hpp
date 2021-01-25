@@ -5,9 +5,14 @@
 
 namespace sf
 {
+/**
+ * @relates PieChart
+ * data class which holds data member of Pie chart plot.
+ *
+*/
 struct PieData {
-    float value;
-    sf::Color color;
+    float value;    /**< data value */
+    sf::Color color; /**< color of the data */
     PieData();
 };
 };

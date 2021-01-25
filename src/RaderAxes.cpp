@@ -1,4 +1,4 @@
-#include "SFPlot/RaderAxes.hpp"
+#include "SFPlot/RadarAxes.hpp"
 #include <vector>
 #include <cmath>
 #include <sstream>
@@ -6,9 +6,16 @@
 
 namespace sf
 {
-const float RaderAxes::RADIUS(250.f);
+const float RadarAxes::RADIUS(250.f); /**< radius of plotting area */
 
-void RaderAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
+/**
+ * Drawing function derived from sf::Drawable
+ *
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
+void RadarAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
     drawAxes(target, states);
@@ -17,7 +24,14 @@ void RaderAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
     }
 }
 
-void RaderAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) const
+/**
+ * draw axes
+ *
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
+void RadarAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw outer circle*/
     {
@@ -61,8 +75,14 @@ void RaderAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) cons
         }
     }
 }
-
-void RaderAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) const
+/**
+ * draw legend
+ *
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
+void RadarAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw angle legend */
     constexpr float angle_step = 45.f;
@@ -104,64 +124,118 @@ void RaderAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) co
     }
 }
 
-RaderAxes::RaderAxes()
+/**
+ * Constructor for RadarAxes class
+*/
+RadarAxes::RadarAxes()
     : max_value_(0.0), font_(plot_config.font), font_color_(plot_config.font_color),
       axes_color_(plot_config.axes_color), scale_color_(plot_config.scale_color)
 {
 }
 
-RaderAxes::~RaderAxes()
+/**
+ * Destructor for RadarAxes class
+*/
+RadarAxes::~RadarAxes()
 {
 }
 
-/* setter functions ***************************************************/
-void RaderAxes::setMaxValue(const float& max_value)
+/**
+ * set max value of plot range
+ * @param max_value max value of plot range
+ *
+ */
+void RadarAxes::setMaxValue(const float& max_value)
 {
     max_value_ = max_value;
 }
 
-void RaderAxes::setFont(const sf::Font& font)
+/**
+ * set font of legend
+ * @param font legend font
+ *
+ */
+void RadarAxes::setFont(const sf::Font& font)
 {
     font_ = font;
 }
 
-void RaderAxes::setFontColor(const sf::Color& font_color)
+/**
+ * set font color of legend
+ * @param font_color font color of legend
+ *
+ */
+void RadarAxes::setFontColor(const sf::Color& font_color)
 {
     font_color_ = font_color;
 }
 
-void RaderAxes::setAxesColor(const sf::Color& axes_color)
+/**
+ * set axes color
+ * @param axes_color axes color
+ *
+ */
+void RadarAxes::setAxesColor(const sf::Color& axes_color)
 {
     axes_color_ = axes_color;
 }
 
-void RaderAxes::setScaleColor(const sf::Color& scale_color)
+/**
+ * set scale color
+ * @param scale_color set scale color
+ *
+ */
+void RadarAxes::setScaleColor(const sf::Color& scale_color)
 {
     scale_color_ = scale_color;
 }
 
-/* getter functions ***************************************************/
-float RaderAxes::getMaxValue() const
+/**
+ * get max value of plotting range
+ * @return max value of plotting range
+ *
+ */
+float RadarAxes::getMaxValue() const
 {
     return max_value_;
 }
 
-sf::Font RaderAxes::getFont() const
+/**
+ * get font of legend
+ * @return font of legend
+ *
+ */
+sf::Font RadarAxes::getFont() const
 {
     return font_;
 }
 
-sf::Color RaderAxes::getFontColor() const
+/**
+ * get font color
+ * @return font color of legend
+ *
+ */
+sf::Color RadarAxes::getFontColor() const
 {
     return font_color_;
 }
 
-sf::Color RaderAxes::getAxesColor() const
+/**
+ * get axes color
+ * @return axes color
+ *
+ */
+sf::Color RadarAxes::getAxesColor() const
 {
     return axes_color_;
 }
 
-sf::Color RaderAxes::getScaleColor() const
+/**
+ * get scale color
+ * @return scale color
+ *
+ */
+sf::Color RadarAxes::getScaleColor() const
 {
     return scale_color_;
 }

@@ -5,6 +5,10 @@
 namespace sf
 {
 static constexpr float RADIUS(250.f);
+
+/**
+ * get total value of data.
+ */
 float PieChart::getTotal() const
 {
     float total = 0.f;
@@ -16,6 +20,13 @@ float PieChart::getTotal() const
     return total;
 }
 
+/**
+ * Drawing function derived from sf::Drawable
+ *
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
 void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -32,21 +43,38 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
     }
 }
 
+/**
+ * Constructor for PieChart class
+*/
 PieChart::PieChart()
     : data_set_(), font_(plot_config.font)
 {
 }
 
+/**
+ * Destructor for PieChart class
+*/
 PieChart::~PieChart()
 {
 }
 
 /* setter function */
-void PieChart::set_font(const sf::Font& font)
+
+/**
+ * set font of legend
+ * @param font font of legend
+ *
+*/
+void PieChart::setFont(const sf::Font& font)
 {
     font_ = font;
 }
 
+/**
+ * add data of chart
+ * @return pointer to added data
+ *
+*/
 std::shared_ptr<PieData> PieChart::addData()
 {
     auto data = std::make_shared<PieData>();
@@ -55,17 +83,33 @@ std::shared_ptr<PieData> PieChart::addData()
     return data;
 }
 
+/**
+ * add data of chart
+ * @param data pointer to data
+ *
+*/
 void PieChart::addData(std::shared_ptr<PieData> data)
 {
     data_set_.push_back(data);
 }
 
 /* getter function */
+/**
+ * get legend font
+ * @return legend font
+ *
+*/
 sf::Font PieChart::getFont() const
 {
     return font_;
 }
 
+/**
+ * get pointer to chart data
+ * @param index index of the data
+ * @return pointer to data
+ *
+*/
 std::shared_ptr<PieData> PieChart::getData(const std::size_t& index)
 {
     return data_set_[index];

@@ -7,6 +7,12 @@
 
 namespace sf
 {
+
+/**
+ * @relates ArcData
+ * Arc meter chart
+ *
+*/
 class ArcMeter : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;
@@ -30,7 +36,6 @@ public:
     /* getter functions */
     sf::Font getFont() const;
     sf::Color getFontColor() const;
-    float getValue() const;
     std::pair<float, float> getRange() const;
     float getMaxRange() const;
     float getMinRange() const;

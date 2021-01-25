@@ -5,6 +5,10 @@
 
 namespace sf
 {
+/**
+ * Pie chart class
+ *
+*/
 class PieChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     std::vector<std::shared_ptr<PieData>> data_set_;
@@ -17,7 +21,7 @@ public:
     virtual ~PieChart();
 
     /* setter function */
-    void set_font(const sf::Font& font);
+    void setFont(const sf::Font& font);
     std::shared_ptr<PieData> addData();
     void addData(std::shared_ptr<PieData> data);
 

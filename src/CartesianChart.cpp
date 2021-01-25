@@ -4,6 +4,14 @@
 
 namespace sf
 {
+
+/**
+ * Drawing function derived from sf::Drawable
+ *
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
 void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -23,6 +31,16 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
     }
 }
 
+/**
+ * Draws data with points on chart
+ *
+ * @param elem         Data to plot
+ * @param target       Render Target
+ * @param states       Render States
+ * @param x_range      X range of plotting area
+ * @param y_range      Y range of plotting area
+ *
+ */
 void CartesianChart::drawPoint(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
@@ -40,6 +58,16 @@ void CartesianChart::drawPoint(const CartesianData& elem, sf::RenderTarget& targ
 
 }
 
+/**
+ * Draws data with lines on chart
+ *
+ * @param elem         Data to plot
+ * @param target       Render Target
+ * @param states       Render States
+ * @param x_range      X range of plotting area
+ * @param y_range      Y range of plotting area
+ *
+ */
 void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
 {
     /* draw data */
@@ -63,17 +91,26 @@ void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& targe
     }
 }
 
+/**
+ * Constructor for CartesianChart class
+*/
 CartesianChart::CartesianChart()
     : data_set_(), axes_()
 {
 }
 
+/**
+ * Destructor for CartesianChart class
+*/
 CartesianChart::~CartesianChart()
 {
 
 }
 
-/* setter functions */
+/**
+ * \brief add plotting data
+ * @return pointer to added data
+*/
 std::shared_ptr<CartesianData> CartesianChart::addData()
 {
     auto data = std::make_shared<CartesianData>();
@@ -83,32 +120,60 @@ std::shared_ptr<CartesianData> CartesianChart::addData()
     return data;
 }
 
+/**
+ * \brief add plotting data
+ * @param data pointer to data
+*/
 void CartesianChart::addData(std::shared_ptr<CartesianData> data)
 {
     data_set_.push_back(data);
     autoRange();
 }
 
+/**
+ * \brief setter func for legend font
+ * @param font font to set
+ *
+*/
 void CartesianChart::setFont(const sf::Font& font)
 {
     axes_.setFont(font);
 }
 
+/**
+ * \brief setter func for legend color
+ * @param font_color font color to set
+ *
+*/
 void CartesianChart::setFontColor(const sf::Color& font_color)
 {
     axes_.setFontColor(font_color);
 }
 
+/**
+ * \brief setter func for axes color
+ * @param axes_color axes color to set
+ *
+*/
 void CartesianChart::setAxesColor(const sf::Color& axes_color)
 {
     axes_.setAxesColor(axes_color);
 }
 
+/**
+ * \brief setter func for scale color
+ * @param scale_color scale color to set
+ *
+*/
 void CartesianChart::setScaleColor(const sf::Color& scale_color)
 {
     axes_.setScaleColor(scale_color);
 }
 
+/**
+ * \brief adjust plotting area value range to plotting data.
+ *
+*/
 void CartesianChart::autoRange()
 {
     float x_min = std::numeric_limits<float>::max();
@@ -130,6 +195,11 @@ void CartesianChart::autoRange()
     setRangeY(y_min, y_max);
 }
 
+/**
+ * \brief set plotting area X value range
+ * @param min minimal value of X value range
+ * @param max maximum value of X value range
+*/
 void CartesianChart::setRangeX(const float& min, const float& max)
 {
     std::pair<float, float> x_range;
@@ -142,6 +212,11 @@ void CartesianChart::setRangeX(const float& min, const float& max)
     axes_.setRangeX(x_range);
 }
 
+/**
+ * \brief set plotting area Y value range
+ * @param min minimal value of Y value range
+ * @param max maximum value of Y value range
+*/
 void CartesianChart::setRangeY(const float& min, const float& max)
 {
     std::pair<float, float> y_range;
@@ -154,37 +229,69 @@ void CartesianChart::setRangeY(const float& min, const float& max)
     axes_.setRangeY(y_range);
 }
 
-/* getter functions */
+/**
+ * \brief get legend font
+ * @return legend font
+*/
 sf::Font CartesianChart::getFont() const
 {
     return axes_.getFont();
 }
 
+/**
+ * \brief get legend font color
+ * @return legend font color
+*/
 sf::Color CartesianChart::getFontColor() const
 {
     return axes_.getFontColor();
 }
 
+/**
+ * \brief getter func for axes color
+ * @return axes color
+ *
+*/
 sf::Color CartesianChart::getAxesColor() const
 {
     return axes_.getAxesColor();
 }
 
+/**
+ * \brief getter func for scale color
+ * @return scale color
+ *
+*/
 sf::Color CartesianChart::getScaleColor() const
 {
     return axes_.getScaleColor();
 }
 
+/**
+ * \brief getter func for X value range
+ * @return min max value pair of X value range
+ *
+*/
 std::pair<float, float> CartesianChart::getRangeX() const
 {
     return axes_.getRangeX();
 }
 
+/**
+ * \brief getter func for Y value range
+ * @return min max value pair of Y value range
+ *
+*/
 std::pair<float, float> CartesianChart::getRangeY() const
 {
     return axes_.getRangeY();
 }
 
+/**
+ * get pointer to plotting data
+ * @param index index of data to get
+ *
+*/
 std::shared_ptr<CartesianData> CartesianChart::getData(const std::size_t& index)
 {
     return data_set_[index];

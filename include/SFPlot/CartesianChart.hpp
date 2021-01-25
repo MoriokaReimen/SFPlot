@@ -11,6 +11,10 @@
 
 namespace sf
 {
+/**
+ * Cartesian Chart(X-Y plot) class
+ *
+*/
 class CartesianChart : virtual public sf::Drawable, virtual public sf::Transformable
 {
     std::vector<std::shared_ptr<CartesianData>> data_set_;

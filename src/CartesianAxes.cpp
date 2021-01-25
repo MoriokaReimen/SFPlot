@@ -6,9 +6,16 @@
 
 namespace sf
 {
-const sf::Vector2f CartesianAxes::DIMENSION{800.f, 600.f};
-const sf::Vector2f CartesianAxes::MARGIN{40.f, 20.f};
+const sf::Vector2f CartesianAxes::DIMENSION{800.f, 600.f}; /**< dimension of Cartesian chart */
+const sf::Vector2f CartesianAxes::MARGIN{40.f, 20.f}; /**< margin between plot and chart dimension */
 
+/**
+ * Drawing function derived from sf::Drawable
+ *
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
 void CartesianAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
@@ -19,6 +26,13 @@ void CartesianAxes::draw(sf::RenderTarget& target, sf::RenderStates states) cons
 
 }
 
+/**
+ * Draws axes
+ * @see void CartesianAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
 void CartesianAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw X Axis */
@@ -79,6 +93,13 @@ void CartesianAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) 
 
 }
 
+/**
+ * Draws legend
+ * @see void CartesianAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
+ * @param target       Render Target
+ * @param states       Render States
+ *
+ */
 void CartesianAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw x legend */
@@ -123,6 +144,11 @@ void CartesianAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states
     }
 }
 
+/**
+ * \brief Constructor for CartesianAxes class
+ * all member is initialized value which is specified by PlotConfig class.
+ * @see   plot_config
+*/
 CartesianAxes::CartesianAxes()
     : x_range_(), y_range_(), font_(plot_config.font), font_color_(plot_config.font_color),
       axes_color_(plot_config.axes_color), scale_color_(plot_config.scale_color)
@@ -130,67 +156,127 @@ CartesianAxes::CartesianAxes()
 
 }
 
+/**
+ * \brief Destructor for CartesianAxes class
+ *
+*/
 CartesianAxes::~CartesianAxes()
 {
 }
 
 /* setter functions **************************************************/
+
+/**
+ * \brief set X value of plot range
+ * @param x_range X value range of plotting area
+*/
 void CartesianAxes::setRangeX(const std::pair<float, float>& x_range)
 {
     x_range_ = x_range;
 }
 
+/**
+ * \brief set Y value of plot range
+ * @param y_range Y value range of plotting area
+*/
 void CartesianAxes::setRangeY(const std::pair<float, float>& y_range)
 {
     y_range_ = y_range;
 }
 
+/**
+ * \brief setter func for legend font
+ * @param font font to set
+ *
+*/
 void CartesianAxes::setFont(const sf::Font& font)
 {
     font_ = font;
 }
 
+/**
+ * \brief setter func for axes line color
+ * @param axes_color axes color to set
+ *
+*/
 void CartesianAxes::setAxesColor(const sf::Color& axes_color)
 {
     axes_color_ = axes_color;
 }
 
+/**
+ * \brief setter func for scale line color
+ * @param scale_color scale color to set
+ *
+*/
 void CartesianAxes::setScaleColor(const sf::Color& scale_color)
 {
     scale_color_ = scale_color;
 }
 
-
+/**
+ * \brief setter func for legend color
+ * @param font_color font color to set
+ *
+*/
 void CartesianAxes::setFontColor(const sf::Color& font_color)
 {
     font_color_ = font_color;
 }
 
 /* getter functions **************************************************/
+
+/**
+ * \brief get X value of plot range
+ * @return X value range of plotting area
+*/
 std::pair<float, float> CartesianAxes::getRangeX() const
 {
     return x_range_;
 }
 
+/**
+ * \brief get Y value of plot range
+ * @return Y value range of plotting area
+*/
 std::pair<float, float> CartesianAxes::getRangeY() const
 {
     return y_range_;
 }
 
+/**
+ * \brief get legend font
+ * @return legend font
+*/
 sf::Font CartesianAxes::getFont() const
 {
     return font_;
 }
 
+/**
+ * \brief get legend font color
+ * @return legend font color
+*/
 sf::Color CartesianAxes::getFontColor() const
 {
     return font_color_;
 }
+
+/**
+ * \brief getter func for axes line color
+ * @return axes color
+ *
+*/
 sf::Color CartesianAxes::getAxesColor() const
 {
     return axes_color_;
 }
 
+/**
+ * \brief getter func for scale line color
+ * @return scale color
+ *
+*/
 sf::Color CartesianAxes::getScaleColor() const
 {
     return scale_color_;

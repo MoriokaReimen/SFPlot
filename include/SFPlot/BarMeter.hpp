@@ -7,6 +7,11 @@
 
 namespace sf
 {
+/**
+ * @relates BarData
+ * Bar meter chart
+ *
+*/
 class BarMeter : virtual public sf::Drawable, virtual public sf::Transformable
 {
     sf::Font font_;

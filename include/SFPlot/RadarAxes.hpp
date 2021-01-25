@@ -3,7 +3,12 @@
 
 namespace sf
 {
-class RaderAxes : virtual public sf::Transformable, virtual public sf::Drawable
+/**
+ * @relates RadarChart
+ * axes of Radar Chart.
+ *
+*/
+class RadarAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
     float max_value_;
     sf::Font font_;
@@ -17,9 +22,8 @@ class RaderAxes : virtual public sf::Transformable, virtual public sf::Drawable
 public:
     static const float RADIUS;
 
-    RaderAxes();
-    virtual ~RaderAxes();
-    RaderAxes& operator=(const RaderAxes& other) = default;
+    RadarAxes();
+    virtual ~RadarAxes();
 
     /* setter functions */
     void setMaxValue(const float& max_value);

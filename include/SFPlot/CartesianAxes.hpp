@@ -3,6 +3,11 @@
 #include <utility>
 namespace sf
 {
+/**
+ * @relates CartesianChart
+ * axes of Cartesian Chart.
+ *
+*/
 class CartesianAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
     std::pair<float, float> x_range_;
@@ -22,7 +27,7 @@ public:
     static const sf::Vector2f DIMENSION;
     static const sf::Vector2f MARGIN;
     CartesianAxes();
-    CartesianAxes& operator=(const CartesianAxes& other) = default;
+
     virtual ~CartesianAxes();
 
     /* setter functions */

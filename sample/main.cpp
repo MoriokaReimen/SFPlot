@@ -45,11 +45,11 @@ int main()
     pie.move(1000.f, 0.f);
     pie.setScale(0.5f, 0.5f);
 
-    sf::RaderChart rader_chart;
-    auto rader_data1 = rader_chart.addData();
-    rader_data1->data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}, {90.f, 120.f}};
-    rader_chart.autoRange();
-    rader_chart.move(1000.f, 400.f);
+    sf::RadarChart Radar_chart;
+    auto Radar_data1 = Radar_chart.addData();
+    Radar_data1->data = {{0.f, 100.f}, {45.f, 200.f}, {45.f, 50.f}, {120.f, 200.f}, {90.f, 120.f}};
+    Radar_chart.autoRange();
+    Radar_chart.move(1000.f, 400.f);
 
     sf::BarMeter bar_meter;
     bar_meter.setMinRange(0.f);
@@ -85,7 +85,7 @@ int main()
         window.clear(sf::Color(30, 30, 30));
         window.draw(chart);
         window.draw(pie);
-        window.draw(rader_chart);
+        window.draw(Radar_chart);
         window.draw(bar_meter);
         window.draw(arc_meter);
         window.display();

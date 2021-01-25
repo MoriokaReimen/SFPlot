@@ -3,9 +3,14 @@
 
 namespace sf
 {
+/**
+ * @relates ArcChart
+ * data class which holds data member of Arc chart plot.
+ *
+*/
 struct ArcData {
-    sf::Color color;
-    float value;
+    sf::Color color; /**< color of data */
+    float value;     /**< value of data */
     ArcData();
 };
 };

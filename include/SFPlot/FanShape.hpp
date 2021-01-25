@@ -3,6 +3,11 @@
 
 namespace sf
 {
+/**
+ * @relates PieChart, ArcMeter
+ * Arc shape.
+ *
+*/
 class FanShape : public sf::Shape
 {
     float radius_;

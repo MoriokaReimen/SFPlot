@@ -3,15 +3,32 @@
 
 namespace sf
 {
+
+/**
+ * Constructor for CartesianData class
+ *
+ * Construct CartesianData class. Initialize color with random color
+ * @see sf::getRandomColor() function
+ *
+ */
 CartesianData::CartesianData()
     : data(), color(getRandomColor()), type(CartesianData::PLOT_TYPE::LINE)
 {
 }
 
+/**
+ * Constructor for CartesianData class
+ *
+*/
 CartesianData::~CartesianData()
 {
 }
 
+/**
+ * get X value range of data
+ * @return min, max pair of X value range
+ *
+*/
 std::pair<float, float> CartesianData::getRangeX() const
 {
     /* Extract Data*/
@@ -26,6 +43,11 @@ std::pair<float, float> CartesianData::getRangeX() const
     return std::pair<float, float>(min_x, max_x);
 }
 
+/**
+ * get Y value range of data
+ * @return min, max pair of Y value range
+ *
+*/
 std::pair<float, float> CartesianData::getRangeY() const
 {
     /* Extract Data*/

@@ -9,7 +9,7 @@ namespace sf
 
 /**
  * Drawing function derived from sf::Drawable
- * 
+ *
  * @param target       Render Target
  * @param states       Render States
  *
@@ -61,7 +61,10 @@ void ArcMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 }
 
 /**
- * Constructor for ArcMeter class
+ * \brief Constructor for ArcMeter class
+ * legend font and color are initialized with default value. \n
+ * Default value is specified by plot_config global bariable.
+ * @see   plot_config
  * @param min_range the minimal value of ArcMeter data
  * @param max_range the max value of ArcMeter data
 */
@@ -71,24 +74,37 @@ ArcMeter::ArcMeter(const float &min_range, const float& max_range)
 }
 
 /**
- * Destructor for ArcMeter class
- * 
+ * \brief Destructor for ArcMeter class
+ *
 */
 ArcMeter::~ArcMeter()
 {
 }
 
-/* setter functions */
+/**
+ * \brief setter func for legend font
+ * @param font font to set
+ *
+*/
 void ArcMeter::setFont(const sf::Font &font)
 {
     font_ = font;
 }
 
+/**
+ * \brief setter func for legend color
+ * @param font_color font color to set
+ *
+*/
 void ArcMeter::setFontColor(const sf::Color& font_color)
 {
     font_color_ = font_color;
 }
 
+/**
+ * \brief set max value of plot range
+ * @param max_range max value of plotting area
+*/
 void ArcMeter::setMaxRange(const float &max_range)
 {
     range_.second = max_range;
@@ -96,6 +112,10 @@ void ArcMeter::setMaxRange(const float &max_range)
         std::swap(range_.first, range_.second);
 }
 
+/**
+ * \brief set min value of plot range
+ * @param min_range min value of plotting area
+*/
 void ArcMeter::setMinRange(const float &min_range)
 {
     range_.first = min_range;
@@ -103,6 +123,10 @@ void ArcMeter::setMinRange(const float &min_range)
         std::swap(range_.first, range_.second);
 }
 
+/**
+ * \brief add plotting data
+ * @return pointer to added data
+*/
 std::shared_ptr<ArcData> ArcMeter::addData()
 {
     auto data = std::make_shared<ArcData>();
@@ -111,39 +135,65 @@ std::shared_ptr<ArcData> ArcMeter::addData()
     return data;
 }
 
+/**
+ * \brief add plotting data
+ * @param data pointer to data
+*/
 void ArcMeter::addData(std::shared_ptr<ArcData> data)
 {
     data_set_.push_back(data);
 }
 
-/* getter functions */
+/**
+ * \brief get legend font
+ * @return legend font
+*/
 sf::Font ArcMeter::getFont() const
 {
     return font_;
 }
 
+/**
+ * \brief get legend font color
+ * @return legend font color
+*/
 sf::Color ArcMeter::getFontColor() const
 {
     return font_color_;
 }
 
+/**
+ * \brief get plotting area value range
+ * @return pair of min value and max value of plotting area
+*/
 std::pair<float, float> ArcMeter::getRange() const
 {
     return range_;
 }
+
+/**
+ * \brief get plotting area max value
+ * @return max value of plotting area
+*/
 float ArcMeter::getMaxRange() const
 {
     return range_.second;
 }
+
+/**
+ * get minimal value of plotting area
+ * @return minimal value of plotting area
+ *
+*/
 float ArcMeter::getMinRange() const
 {
     return range_.first;
 }
 
 /**
- * get pointer to data to plot
- * @param index index of data to get 
- * 
+ * get pointer to plotting data
+ * @param index index of data to get
+ *
 */
 std::shared_ptr<ArcData> ArcMeter::getData(const std::size_t& index)
 {
