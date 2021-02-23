@@ -41,11 +41,11 @@ void CartesianChart::draw(sf::RenderTarget& target, sf::RenderStates states) con
  * @param y_range      Y range of plotting area
  *
  */
-void CartesianChart::drawPoint(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
+void CartesianChart::drawPoint(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<double, double>& x_range, const std::pair<double, double>& y_range) const
 {
     /* draw data */
     for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++) {
-        constexpr float POINT_RADIUS = 5.f;
+        constexpr double POINT_RADIUS = 5.f;
         const auto x = (it->x - x_range.first) / (x_range.second - x_range.first) * (axes_.DIMENSION.x - axes_.MARGIN.x) + axes_.MARGIN.x;
         const auto y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (it->y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y - axes_.MARGIN.y);
 
@@ -68,7 +68,7 @@ void CartesianChart::drawPoint(const CartesianData& elem, sf::RenderTarget& targ
  * @param y_range      Y range of plotting area
  *
  */
-void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<float, float>& x_range, const std::pair<float, float>& y_range) const
+void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& target, sf::RenderStates states, const std::pair<double, double>& x_range, const std::pair<double, double>& y_range) const
 {
     /* draw data */
     for (auto it = elem.data.cbegin(); it != elem.data.cend(); it++) {
@@ -83,8 +83,8 @@ void CartesianChart::drawLine(const CartesianData& elem, sf::RenderTarget& targe
             line_end.y = (axes_.DIMENSION.y - axes_.MARGIN.y) - (line_end.y - y_range.first) / (y_range.second - y_range.first) * (axes_.DIMENSION.y - axes_.MARGIN.y);
 
             sf::Vertex line[] = {
-                sf::Vertex(line_start, elem.color),
-                sf::Vertex(line_end, elem.color)
+                sf::Vertex(static_cast<sf::Vector2f>(line_start), elem.color),
+                sf::Vertex(static_cast<sf::Vector2f>(line_end), elem.color)
             };
             target.draw(line, 2, sf::Lines, states);
         }
@@ -176,10 +176,10 @@ void CartesianChart::setScaleColor(const sf::Color& scale_color)
 */
 void CartesianChart::autoRange()
 {
-    float x_min = std::numeric_limits<float>::max();
-    float x_max = std::numeric_limits<float>::lowest();
-    float y_min = std::numeric_limits<float>::max();
-    float y_max = std::numeric_limits<float>::lowest();
+    double x_min = std::numeric_limits<double>::max();
+    double x_max = std::numeric_limits<double>::lowest();
+    double y_min = std::numeric_limits<double>::max();
+    double y_max = std::numeric_limits<double>::lowest();
 
     for (const auto& elem : data_set_) {
         auto x_range = elem->getRangeX();
@@ -200,13 +200,13 @@ void CartesianChart::autoRange()
  * @param min minimal value of X value range
  * @param max maximum value of X value range
 */
-void CartesianChart::setRangeX(const float& min, const float& max)
+void CartesianChart::setRangeX(const double& min, const double& max)
 {
-    std::pair<float, float> x_range;
+    std::pair<double, double> x_range;
     if (min > max) {
-        x_range = std::pair<float, float>(max, min);
+        x_range = std::pair<double, double>(max, min);
     } else {
-        x_range = std::pair<float, float>(min, max);
+        x_range = std::pair<double, double>(min, max);
     }
 
     axes_.setRangeX(x_range);
@@ -217,13 +217,13 @@ void CartesianChart::setRangeX(const float& min, const float& max)
  * @param min minimal value of Y value range
  * @param max maximum value of Y value range
 */
-void CartesianChart::setRangeY(const float& min, const float& max)
+void CartesianChart::setRangeY(const double& min, const double& max)
 {
-    std::pair<float, float> y_range;
+    std::pair<double, double> y_range;
     if (min > max) {
-        y_range = std::pair<float, float>(max, min);
+        y_range = std::pair<double, double>(max, min);
     } else {
-        y_range = std::pair<float, float>(min, max);
+        y_range = std::pair<double, double>(min, max);
     }
 
     axes_.setRangeY(y_range);
@@ -272,7 +272,7 @@ sf::Color CartesianChart::getScaleColor() const
  * @return min max value pair of X value range
  *
 */
-std::pair<float, float> CartesianChart::getRangeX() const
+std::pair<double, double> CartesianChart::getRangeX() const
 {
     return axes_.getRangeX();
 }
@@ -282,7 +282,7 @@ std::pair<float, float> CartesianChart::getRangeX() const
  * @return min max value pair of Y value range
  *
 */
-std::pair<float, float> CartesianChart::getRangeY() const
+std::pair<double, double> CartesianChart::getRangeY() const
 {
     return axes_.getRangeY();
 }

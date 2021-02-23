@@ -10,7 +10,7 @@ namespace sf
 */
 struct ArcData {
     sf::Color color; /**< color of data */
-    float value;     /**< value of data */
+    double value;     /**< value of data */
     ArcData();
 };
 };

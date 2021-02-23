@@ -17,8 +17,8 @@ struct RadarData {
      *
      */
     struct RadarElement {
-        float angle; /**< angle in degree */
-        float value; /**< value (must be positive.)*/
+        double angle; /**< angle in degree */
+        double value; /**< value (must be positive.)*/
     };
 
     std::vector<RadarElement> data; /**< plot data */
@@ -26,6 +26,6 @@ struct RadarData {
 
     RadarData();
     virtual ~RadarData();
-    float getMaxValue() const;
+    double getMaxValue() const;
 };
 };

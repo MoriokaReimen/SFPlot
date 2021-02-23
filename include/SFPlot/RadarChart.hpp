@@ -19,8 +19,8 @@ class RadarChart : virtual public sf::Drawable, virtual public sf::Transformable
     mutable RadarAxes axes_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    void drawPoint(sf::RenderTarget& target, sf::RenderStates states, const RadarData& data, const float& max_value) const;
-    float getMaxValue() const;
+    void drawPoint(sf::RenderTarget& target, sf::RenderStates states, const RadarData& data, const double& max_value) const;
+    double getMaxValue() const;
 public:
     RadarChart();
     virtual ~RadarChart();
@@ -33,7 +33,7 @@ public:
     void setAxesColor(const sf::Color& axes_color);
     void setScaleColor(const sf::Color& scale_color);
     void autoRange();
-    void setMaxValue(const float& max);
+    void setMaxValue(const double& max);
 
     /* getter functions */
     sf::Font getFont() const;

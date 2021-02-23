@@ -6,7 +6,7 @@
 
 namespace sf
 {
-const float RadarAxes::RADIUS(250.f); /**< radius of plotting area */
+const double RadarAxes::RADIUS(250.0); /**< radius of plotting area */
 
 /**
  * Drawing function derived from sf::Drawable
@@ -19,7 +19,7 @@ void RadarAxes::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
     drawAxes(target, states);
-    if(!font_.getInfo().family.empty()) {
+    if (!font_.getInfo().family.empty()) {
         drawLegend(target, states);
     }
 }
@@ -47,7 +47,7 @@ void RadarAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) cons
 
     /* Draw inner circle*/
     for (std::size_t i = 1; i < 5; i++) {
-        float radius = RADIUS / 5.f * i;
+        double radius = RADIUS / 5.0 * i;
         std::vector<sf::Vertex> vertices;
         for (std::size_t index = 0; index < 31; index++) {
             sf::Vector2f point(RADIUS + radius * std::sin(M_PI / 15 * index),
@@ -85,10 +85,10 @@ void RadarAxes::drawAxes(sf::RenderTarget& target, sf::RenderStates states) cons
 void RadarAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) const
 {
     /* Draw angle legend */
-    constexpr float angle_step = 45.f;
-    constexpr float MARGIN = 20.f;
-    for(int i = 0; i < 8; i++) {
-        float angle = angle_step * i;
+    constexpr double angle_step = 45.0;
+    constexpr double MARGIN = 20.0;
+    for (int i = 0; i < 8; i++) {
+        double angle = angle_step * i;
         std::stringstream ss;
         ss << angle;
         sf::Text legend;
@@ -98,18 +98,18 @@ void RadarAxes::drawLegend(sf::RenderTarget& target, sf::RenderStates states) co
         legend.setCharacterSize(15);
         legend.setOrigin(legend.getGlobalBounds().width / 2.0, legend.getGlobalBounds().height / 2.0);
         legend.setRotation(angle);
-        sf::Vector2f position(RADIUS + (RADIUS + MARGIN) * std::sin(angle / 180.f * M_PI),
-                              RADIUS - (RADIUS + MARGIN) * std::cos(angle / 180.f * M_PI));
+        sf::Vector2f position(RADIUS + (RADIUS + MARGIN) * std::sin(angle / 180.0 * M_PI),
+                              RADIUS - (RADIUS + MARGIN) * std::cos(angle / 180.0 * M_PI));
         legend.setPosition(position);
         target.draw(legend, states);
     }
 
     /* Draw value legend */
-    constexpr float X_MARGIN(20.f);
-    constexpr float Y_MARGIN(10.f);
-    float value_step = max_value_ / 5;
-    for(int i = 0; i < 6; i++) {
-        float value = value_step * i;
+    constexpr double X_MARGIN(20.0);
+    constexpr double Y_MARGIN(10.0);
+    double value_step = max_value_ / 5;
+    for (int i = 0; i < 6; i++) {
+        double value = value_step * i;
         std::stringstream ss;
         ss << value;
         sf::Text legend;
@@ -145,7 +145,7 @@ RadarAxes::~RadarAxes()
  * @param max_value max value of plot range
  *
  */
-void RadarAxes::setMaxValue(const float& max_value)
+void RadarAxes::setMaxValue(const double& max_value)
 {
     max_value_ = max_value;
 }
@@ -153,7 +153,6 @@ void RadarAxes::setMaxValue(const float& max_value)
 /**
  * set font of legend
  * @param font legend font
- *
  */
 void RadarAxes::setFont(const sf::Font& font)
 {
@@ -195,7 +194,7 @@ void RadarAxes::setScaleColor(const sf::Color& scale_color)
  * @return max value of plotting range
  *
  */
-float RadarAxes::getMaxValue() const
+double RadarAxes::getMaxValue() const
 {
     return max_value_;
 }

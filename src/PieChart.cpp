@@ -6,17 +6,18 @@
 
 namespace sf
 {
-static constexpr float RADIUS(250.f);
+static constexpr double RADIUS(250.0);
 
 /**
  * get total value of data.
  */
-float PieChart::getTotal() const
+double PieChart::getTotal() const
 {
-    float total = 
-
-    std::accumulate(data_set_.begin(), data_set_.end(), 0.f,
-                    [](const float& a, const std::shared_ptr<PieData>& b){return a + b->value;} );
+    double total =
+        std::accumulate(data_set_.begin(), data_set_.end(), 0.0,
+    [](const double & a, const std::shared_ptr<PieData>& b) {
+        return a + b->value;
+    } );
 
     return total;
 }
@@ -32,11 +33,11 @@ void PieChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
 
-    const float total = getTotal();
-    float start_angle = 0U;
+    const double total = getTotal();
+    double start_angle = 0U;
 
-    for(auto const& data : data_set_) {
-        float angle = 360.f * data->value / total;
+    for (auto const& data : data_set_) {
+        double angle = 360.0 * data->value / total;
         FanShape shape(RADIUS, start_angle, start_angle + angle);
         shape.setFillColor(data->color);
         target.draw(shape, states);

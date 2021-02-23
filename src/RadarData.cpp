@@ -30,11 +30,11 @@ RadarData::~RadarData()
  * @return max value of data
  *
  */
-float RadarData::getMaxValue() const
+double RadarData::getMaxValue() const
 {
-    auto max = std::numeric_limits<float>::lowest();
+    auto max = std::numeric_limits<double>::lowest();
 
-    for(const auto& elem : data) {
+    for (const auto& elem : data) {
         max = std::max(max, elem.value);
     }
 

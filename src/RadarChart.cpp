@@ -20,7 +20,7 @@ void RadarChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
     target.draw(axes_, states);
 
-    for(const auto& data : data_set_) {
+    for (const auto& data : data_set_) {
         drawPoint(target, states, *data, axes_.getMaxValue());
     }
 }
@@ -33,14 +33,14 @@ void RadarChart::draw(sf::RenderTarget& target, sf::RenderStates states) const
  * @param max_value max value of data
  *
  */
-void RadarChart::drawPoint(sf::RenderTarget& target, sf::RenderStates states, const RadarData& data, const float& max_value) const
+void RadarChart::drawPoint(sf::RenderTarget& target, sf::RenderStates states, const RadarData& data, const double& max_value) const
 {
-    constexpr float POINT_RADIUS(5.f);
+    constexpr double POINT_RADIUS(5.0);
 
-    for(const auto& element : data.data) {
-        const float radius = element.value / max_value * axes_.RADIUS;
-        sf::Vector2f position(axes_.RADIUS + radius * std::sin(element.angle / 180.f * M_PI) - POINT_RADIUS,
-                              axes_.RADIUS - radius * std::cos(element.angle / 180.f * M_PI) - POINT_RADIUS);
+    for (const auto& element : data.data) {
+        const double radius = element.value / max_value * axes_.RADIUS;
+        sf::Vector2f position(axes_.RADIUS + radius * std::sin(element.angle / 180.0 * M_PI) - POINT_RADIUS,
+                              axes_.RADIUS - radius * std::cos(element.angle / 180.0 * M_PI) - POINT_RADIUS);
         sf::CircleShape point(POINT_RADIUS);
         point.setPosition(position);
         point.setFillColor(data.color);
@@ -53,7 +53,7 @@ void RadarChart::drawPoint(sf::RenderTarget& target, sf::RenderStates states, co
  * @return max value of data
  *
  */
-float RadarChart::getMaxValue() const
+double RadarChart::getMaxValue() const
 {
     return axes_.getMaxValue();
 }
@@ -146,8 +146,8 @@ void RadarChart::setScaleColor(const sf::Color& scale_color)
 */
 void RadarChart::autoRange()
 {
-    auto max = std::numeric_limits<float>::lowest();
-    for(const auto& elem : data_set_) {
+    auto max = std::numeric_limits<double>::lowest();
+    for (const auto& elem : data_set_) {
         max = std::max(elem->getMaxValue(), max);
     }
 
@@ -158,7 +158,7 @@ void RadarChart::autoRange()
  * @param max max value of plotting range
  *
 */
-void RadarChart::setMaxValue(const float& max)
+void RadarChart::setMaxValue(const double& max)
 {
     axes_.setMaxValue(max);
 }

@@ -12,7 +12,7 @@ namespace sf
  *
  */
 ArcData::ArcData()
-    : color(getRandomColor()), value(0.f)
+    : color(getRandomColor()), value(0.0)
 {
 }
 };

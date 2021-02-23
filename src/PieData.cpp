@@ -12,7 +12,7 @@ namespace sf
  *
  */
 PieData::PieData()
-    : color(getRandomColor()), value(0.f)
+    : color(getRandomColor()), value(0.0)
 {
 }
 

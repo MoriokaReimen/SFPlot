@@ -48,7 +48,7 @@ endif(ENABLE_DOC)
 set(CMAKE_CXX_STANDARD 17)
 
 ###################################################################
-# Configure build for SFGraphing library
+# Configure build for SFPlot library
 file(GLOB SFPLOT_SRC src/*.cpp)
 add_library(SFPlot STATIC ${SFPLOT_SRC} )
 target_link_libraries(SFPlot PUBLIC sfml-graphics sfml-window sfml-system)
@@ -60,4 +60,7 @@ if(ENABLE_SAMPLE)
 file(GLOB SAMPLE_SRC sample/*.cpp)
 add_executable(plot ${SAMPLE_SRC})
 target_link_libraries(plot SFPlot)
+# Copy resource to binary directory
+add_custom_command(TARGET plot POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/resource/" "${CMAKE_BINARY_DIR}/resource")  
 endif()

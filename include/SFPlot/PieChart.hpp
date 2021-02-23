@@ -15,7 +15,7 @@ class PieChart : virtual public sf::Drawable, virtual public sf::Transformable
     sf::Font font_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-    float getTotal() const;
+    double getTotal() const;
 public:
     PieChart();
     virtual ~PieChart();

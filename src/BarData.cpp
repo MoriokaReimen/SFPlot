@@ -11,7 +11,7 @@ namespace sf
  *
  */
 BarData::BarData()
-    : color(getRandomColor()), value(0.f)
+    : color(getRandomColor()), value(0.0)
 {
 
 }

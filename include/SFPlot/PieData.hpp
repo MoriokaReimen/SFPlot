@@ -11,7 +11,7 @@ namespace sf
  *
 */
 struct PieData {
-    float value;    /**< data value */
+    double value;    /**< data value */
     sf::Color color; /**< color of the data */
     PieData();
 };

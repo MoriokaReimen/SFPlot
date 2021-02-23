@@ -11,10 +11,10 @@ namespace sf
  * @param end_angle     end angle of fan
  *
  */
-FanShape::FanShape(const float& radius, const float& start_angle, const float& end_angle)
+FanShape::FanShape(const double& radius, const double& start_angle, const double& end_angle)
     : radius_(radius), start_angle_(start_angle), end_angle_(end_angle)
 {
-    if(end_angle_ < start_angle_) {
+    if (end_angle_ < start_angle_) {
         std::swap(end_angle_, start_angle_);
     }
 
@@ -34,7 +34,7 @@ FanShape::~FanShape()
  * @param radius radius of fan
  *
 */
-void FanShape::setRadius(const float& radius)
+void FanShape::setRadius(const double& radius)
 {
     radius_ = radius;
     update();
@@ -45,10 +45,10 @@ void FanShape::setRadius(const float& radius)
  * @param start_angle start angle of fan
  *
 */
-void FanShape::setStartAngle(const float& start_angle)
+void FanShape::setStartAngle(const double& start_angle)
 {
     start_angle_ = start_angle;
-    if(end_angle_ < start_angle_) {
+    if (end_angle_ < start_angle_) {
         std::swap(end_angle_, start_angle_);
     }
     update();
@@ -59,10 +59,10 @@ void FanShape::setStartAngle(const float& start_angle)
  * @param end_angle end angle of fan
  *
 */
-void FanShape::setEndAngle(const float& end_angle)
+void FanShape::setEndAngle(const double& end_angle)
 {
     end_angle_ = end_angle;
-    if(end_angle_ < start_angle_) {
+    if (end_angle_ < start_angle_) {
         std::swap(end_angle_, start_angle_);
     }
     update();
@@ -74,7 +74,7 @@ void FanShape::setEndAngle(const float& end_angle)
  * @return radius of fan
  *
 */
-float FanShape::getRadius() const
+double FanShape::getRadius() const
 {
     return radius_;
 }
@@ -84,7 +84,7 @@ float FanShape::getRadius() const
  * @return start angle of fan
  *
 */
-float FanShape::getStartAngle() const
+double FanShape::getStartAngle() const
 {
     return start_angle_;
 }
@@ -94,7 +94,7 @@ float FanShape::getStartAngle() const
  * @return end angle of fan
  *
 */
-float FanShape::getEndAngle() const
+double FanShape::getEndAngle() const
 {
     return end_angle_;
 }
@@ -117,12 +117,12 @@ std::size_t FanShape::getPointCount() const
 */
 sf::Vector2f FanShape::getPoint(std::size_t index) const
 {
-    if(index == 0) return sf::Vector2f(radius_, radius_);
+    if (index == 0) return sf::Vector2f(radius_, radius_);
 
     index -= 1;
-    const float angle = (end_angle_ - start_angle_) * 0.01;
-    sf::Vector2f point(radius_ + radius_ * std::cos(start_angle_ / 180.f * M_PI + angle * index / 180.f * M_PI - M_PI_2),
-                       radius_ + radius_ *  std::sin(start_angle_ / 180.f * M_PI + angle * index / 180.f * M_PI - M_PI_2));
+    const double angle = (end_angle_ - start_angle_) * 0.01;
+    sf::Vector2f point(radius_ + radius_ * std::cos(start_angle_ / 180.0 * M_PI + angle * index / 180.0 * M_PI - M_PI_2),
+                       radius_ + radius_ *  std::sin(start_angle_ / 180.0 * M_PI + angle * index / 180.0 * M_PI - M_PI_2));
 
     return point;
 }

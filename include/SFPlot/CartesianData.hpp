@@ -19,13 +19,13 @@ struct CartesianData {
         POINT,  /**< plot data with point */
         LINE   /**< plot data with line */
     };
-    std::vector<sf::Vector2f> data; /**< value of each point */
+    std::vector<sf::Vector2<double>> data; /**< value of each point */
     sf::Color color;                /**< plotting color */
     PLOT_TYPE type;                 /**< type of plot */
 
     CartesianData();
     virtual ~CartesianData();
-    std::pair<float, float> getRangeX() const;
-    std::pair<float, float> getRangeY() const;
+    std::pair<double, double> getRangeX() const;
+    std::pair<double, double> getRangeY() const;
 };
 };

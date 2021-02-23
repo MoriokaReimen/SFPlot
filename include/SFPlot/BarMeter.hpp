@@ -17,11 +17,11 @@ class BarMeter : virtual public sf::Drawable, virtual public sf::Transformable
     sf::Font font_;
     sf::Color font_color_;
     std::vector<std::shared_ptr<BarData>> data_set_;
-    std::pair<float, float> range_;
+    std::pair<double, double> range_;
 
     virtual void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 public:
-    BarMeter(const float& min_range = 0.f, const float& max_range = 100.f);
+    BarMeter(const double& min_range = 0.0, const double& max_range = 100.0);
     virtual ~BarMeter();
 
     /* setter functions */
@@ -29,15 +29,15 @@ public:
     void setFontColor(const sf::Color& color);
     std::shared_ptr<BarData> addData();
     void addData(std::shared_ptr<BarData> data);
-    void setMaxRange(const float& max_range);
-    void setMinRange(const float& min_range);
+    void setMaxRange(const double& max_range);
+    void setMinRange(const double& min_range);
 
     /* getter functions */
     sf::Font getFont() const;
     sf::Color getFontColor() const;
     std::shared_ptr<BarData> getData(const std::size_t& index);
-    std::pair<float, float> getRange() const;
-    float getMaxRange() const;
-    float getMinRange() const;
+    std::pair<double, double> getRange() const;
+    double getMaxRange() const;
+    double getMinRange() const;
 };
 };

@@ -2,7 +2,7 @@
 #include <sstream>
 #include "SFPlot/PlotConfig.hpp"
 
-static constexpr float BAR_MAX_WIDTH = 100.f;
+static constexpr double BAR_MAX_WIDTH = 100.0;
 namespace sf
 {
 /**
@@ -15,15 +15,15 @@ namespace sf
 void BarMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     states.transform *= getTransform();
-    float offset_y = 0.f;
+    double offset_y = 0.0;
     for (auto data : data_set_) {
         auto width = data->value / (range_.second - range_.first) * BAR_MAX_WIDTH;
         width = std::min(width, BAR_MAX_WIDTH);
-        width = std::max(width, 0.f);
+        width = std::max(width, 0.0);
 
         sf::RectangleShape meter(sf::Vector2f(width, 30));
         meter.setFillColor(data->color);
-        meter.setPosition(0.f, offset_y);
+        meter.setPosition(0.0, offset_y);
         target.draw(meter, states);
         if (!font_.getInfo().family.empty()) {
             std::stringstream ss;
@@ -37,11 +37,11 @@ void BarMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
             legend.setFillColor(font_color_);
             legend.setCharacterSize(15);
             legend.setOrigin(0, legend.getGlobalBounds().height / 2);
-            legend.setPosition(120.f, offset_y + 10.f);
+            legend.setPosition(120.0, offset_y + 10.0);
             target.draw(legend, states);
         }
 
-        offset_y += 30.f;
+        offset_y += 30.0;
     }
 }
 
@@ -53,7 +53,7 @@ void BarMeter::draw(sf::RenderTarget &target, sf::RenderStates states) const
  * @param min_range the minimal value of ArcMeter data
  * @param max_range the max value of ArcMeter data
 */
-BarMeter::BarMeter(const float &min_range, const float &max_range)
+BarMeter::BarMeter(const double &min_range, const double &max_range)
     : font_(plot_config.font), font_color_(plot_config.font_color), data_set_(), range_(min_range, max_range)
 {
 }
@@ -111,7 +111,7 @@ void BarMeter::addData(std::shared_ptr<BarData> data)
  * \brief set max value of plot range
  * @param max_range max value of plotting area
 */
-void BarMeter::setMaxRange(const float &max_range)
+void BarMeter::setMaxRange(const double &max_range)
 {
     range_.second = max_range;
     if (range_.first > range_.second)
@@ -122,7 +122,7 @@ void BarMeter::setMaxRange(const float &max_range)
  * \brief set min value of plot range
  * @param min_range min value of plotting area
 */
-void BarMeter::setMinRange(const float &min_range)
+void BarMeter::setMinRange(const double &min_range)
 {
     range_.first = min_range;
     if (range_.first > range_.second)
@@ -162,7 +162,7 @@ std::shared_ptr<BarData> BarMeter::getData(const std::size_t &index)
  * \brief get plotting area value range
  * @return pair of min value and max value of plotting area
 */
-std::pair<float, float> BarMeter::getRange() const
+std::pair<double, double> BarMeter::getRange() const
 {
     return range_;
 }
@@ -171,7 +171,7 @@ std::pair<float, float> BarMeter::getRange() const
  * \brief get plotting area max value
  * @return max value of plotting area
 */
-float BarMeter::getMaxRange() const
+double BarMeter::getMaxRange() const
 {
     return range_.second;
 }
@@ -181,7 +181,7 @@ float BarMeter::getMaxRange() const
  * @return minimal value of plotting area
  *
 */
-float BarMeter::getMinRange() const
+double BarMeter::getMinRange() const
 {
     return range_.first;
 }

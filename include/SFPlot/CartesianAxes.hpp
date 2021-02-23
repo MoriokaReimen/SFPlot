@@ -10,8 +10,8 @@ namespace sf
 */
 class CartesianAxes : virtual public sf::Transformable, virtual public sf::Drawable
 {
-    std::pair<float, float> x_range_;
-    std::pair<float, float> y_range_;
+    std::pair<double, double> x_range_;
+    std::pair<double, double> y_range_;
 
     sf::Font font_;
     sf::Color font_color_;
@@ -31,16 +31,16 @@ public:
     virtual ~CartesianAxes();
 
     /* setter functions */
-    void setRangeX(const std::pair<float, float>& x_range);
-    void setRangeY(const std::pair<float, float>& y_range);
+    void setRangeX(const std::pair<double, double>& x_range);
+    void setRangeY(const std::pair<double, double>& y_range);
     void setFont(const sf::Font& font);
     void setFontColor(const sf::Color& font_color);
     void setAxesColor(const sf::Color& axes_color);
     void setScaleColor(const sf::Color& scale_color);
 
     /* getter functions */
-    std::pair<float, float> getRangeX() const;
-    std::pair<float, float> getRangeY() const;
+    std::pair<double, double> getRangeX() const;
+    std::pair<double, double> getRangeY() const;
     sf::Font getFont() const;
     sf::Color getFontColor() const;
     sf::Color getAxesColor() const;
